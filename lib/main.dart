@@ -1,45 +1,13 @@
 import 'dart:async';
-import 'dart:io';
-import 'dart:convert';
+
 
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:path/path.dart' show join;
 import 'package:path_provider/path_provider.dart';
-import 'package:http/http.dart' as http;
 
-Future<Album> fetchAlbum() async {
-  final response = await http.get(
-    'https://jsonplaceholder.typicode.com/albums/1',
-    //headers: {HttpHeaders.authorizationHeader: "Basic your_api_token_here"},
-  );
-
-  if (response.statusCode == 200) {
-    // If the server did return a 200 OK response,
-    // then parse the JSON.
-    return Album.fromJson(jsonDecode(response.body));
-  } else {
-    // If the server did not return a 200 OK response,
-    // then throw an exception.
-    throw Exception('Failed to load album');
-  }
-}
-
-class Album {
-  final int userId;
-  final int id;
-  final String title;
-
-  Album({this.userId, this.id, this.title});
-
-  factory Album.fromJson(Map<String, dynamic> json) {
-    return Album(
-      userId: json['userId'],
-      id: json['id'],
-      title: json['title'],
-    );
-  }
-}
+import './albumModel.dart';
+import './displayPic.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -85,7 +53,7 @@ class TakePictureScreenState extends State<TakePictureScreen> {
     super.initState();
     // To display the current output from the Camera,
     // create a CameraController.
-    futureAlbum = fetchAlbum();
+    //futureAlbum = fetchAlbum();
     _controller = CameraController(
       // Get a specific camera from the list of available cameras.
       widget.camera,
@@ -159,55 +127,6 @@ class TakePictureScreenState extends State<TakePictureScreen> {
             print(e);
           }
         },
-      ),
-    );
-  }
-}
-
-// A widget that displays the picture taken by the user.
-class DisplayPictureScreen extends StatefulWidget {
-  final String imagePath;
-  final Future<Album> futureAlbum1;
-  const DisplayPictureScreen({Key key, this.imagePath, this.futureAlbum1})
-      : super(key: key);
-
-  @override
-  _DisplayPictureScreenState createState() => _DisplayPictureScreenState();
-}
-
-class _DisplayPictureScreenState extends State<DisplayPictureScreen> {
-  Future<Album> futureAlbum1;
-  @override
-  void initState() {
-    super.initState();
-    futureAlbum1 = fetchAlbum();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('Display the Picture')),
-      // The image is stored as a file on the device. Use the `Image.file`
-      // constructor with the given path to display the image.
-      body: Row(
-        children: [
-          Image.file(File(widget.imagePath)),
-          Center(
-            child: FutureBuilder<Album>(
-              future: widget.futureAlbum1,
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  return Text(snapshot.data.title);
-                } else if (snapshot.hasError) {
-                  return Text("${snapshot.error}");
-                }
-
-                // By default, show a loading spinner.
-                return CircularProgressIndicator();
-              },
-            ),
-          ),
-        ],
       ),
     );
   }
