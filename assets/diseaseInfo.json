@@ -1,0 +1,103 @@
+{ 
+    "disease" : [   
+                        { 
+                          "name" : "Bacterial Spot",  
+                          "intro":"Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                          "cause1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet nulla eget dolor aliquet efficitur a in enim.",
+                          "cause2": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet nulla eget dolor aliquet efficitur a in enim.",
+                          "cause3": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet nulla eget dolor aliquet efficitur a in enim.",
+                          "solution1"  : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet nulla eget dolor aliquet efficitur a in enim.",
+                          "solution2"  : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet nulla eget dolor aliquet efficitur a in enim.",
+                          "solution3"  : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet nulla eget dolor aliquet efficitur a in enim.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet nulla eget dolor aliquet efficitur a in enim.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet nulla eget dolor aliquet efficitur a in enim.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet nulla eget dolor aliquet efficitur a in enim.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet nulla eget dolor aliquet efficitur a in enim.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet nulla eget dolor aliquet efficitur a in enim."
+                        },
+
+                        { 
+                          "name" : "Early Blight",  
+                          "intro":"Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                          "cause1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet nulla eget dolor aliquet efficitur a in enim.",
+                          "cause2": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet nulla eget dolor aliquet efficitur a in enim.",
+                          "cause3": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet nulla eget dolor aliquet efficitur a in enim.",
+                          "solution1"  : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet nulla eget dolor aliquet efficitur a in enim.",
+                          "solution2"  : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet nulla eget dolor aliquet efficitur a in enim.",
+                          "solution3"  : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet nulla eget dolor aliquet efficitur a in enim." 
+                        },
+
+                        { 
+                          "name" : "Late Blight",  
+                          "intro":"Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                          "cause1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet nulla eget dolor aliquet efficitur a in enim.",
+                          "cause2": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet nulla eget dolor aliquet efficitur a in enim.",
+                          "cause3": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet nulla eget dolor aliquet efficitur a in enim.",
+                          "solution1"  : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet nulla eget dolor aliquet efficitur a in enim.",
+                          "solution2"  : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet nulla eget dolor aliquet efficitur a in enim.",
+                          "solution3"  : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet nulla eget dolor aliquet efficitur a in enim."
+                        },
+
+                        { 
+                          "name" : "Leaf Mold",  
+                          "intro":"Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                          "cause1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet nulla eget dolor aliquet efficitur a in enim.",
+                          "cause2": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet nulla eget dolor aliquet efficitur a in enim.",
+                          "cause3": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet nulla eget dolor aliquet efficitur a in enim.",
+                          "solution1"  : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet nulla eget dolor aliquet efficitur a in enim.",
+                          "solution2"  : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet nulla eget dolor aliquet efficitur a in enim.",
+                          "solution3"  : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet nulla eget dolor aliquet efficitur a in enim."
+                        },
+
+                        { 
+                          "name" : "Mosaic Virus",  
+                          "intro":"Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                          "cause1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet nulla eget dolor aliquet efficitur a in enim.",
+                          "cause2": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet nulla eget dolor aliquet efficitur a in enim.",
+                          "cause3": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet nulla eget dolor aliquet efficitur a in enim.",
+                          "solution1"  : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet nulla eget dolor aliquet efficitur a in enim.",
+                          "solution2"  : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet nulla eget dolor aliquet efficitur a in enim.",
+                          "solution3"  : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet nulla eget dolor aliquet efficitur a in enim."
+                        },
+
+                        { 
+                          "name" : "Septoria Leaf Spot",  
+                          "intro":"Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                          "cause1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet nulla eget dolor aliquet efficitur a in enim.",
+                          "cause2": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet nulla eget dolor aliquet efficitur a in enim.",
+                          "cause3": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet nulla eget dolor aliquet efficitur a in enim.",
+                          "solution1"  : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet nulla eget dolor aliquet efficitur a in enim.",
+                          "solution2"  : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet nulla eget dolor aliquet efficitur a in enim.",
+                          "solution3"  : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet nulla eget dolor aliquet efficitur a in enim."
+                        },
+
+                        { 
+                          "name" : "Spider Mites",  
+                          "intro":"Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                          "cause1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet nulla eget dolor aliquet efficitur a in enim.",
+                          "cause2": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet nulla eget dolor aliquet efficitur a in enim.",
+                          "cause3": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet nulla eget dolor aliquet efficitur a in enim.",
+                          "solution1"  : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet nulla eget dolor aliquet efficitur a in enim.",
+                          "solution2"  : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet nulla eget dolor aliquet efficitur a in enim.",
+                          "solution3"  : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet nulla eget dolor aliquet efficitur a in enim."
+                        },
+
+                        { 
+                          "name" : "Target Spot",  
+                          "intro":"Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                          "cause1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet nulla eget dolor aliquet efficitur a in enim.",
+                          "cause2": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet nulla eget dolor aliquet efficitur a in enim.",
+                          "cause3": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet nulla eget dolor aliquet efficitur a in enim.",
+                          "solution1"  : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet nulla eget dolor aliquet efficitur a in enim.",
+                          "solution2"  : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet nulla eget dolor aliquet efficitur a in enim.",
+                          "solution3"  : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet nulla eget dolor aliquet efficitur a in enim."
+                        },
+                        
+                        { 
+                          "name" : "Yellow Leaf Curl Virus",  
+                          "intro":"Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                          "cause1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet nulla eget dolor aliquet efficitur a in enim.",
+                          "cause2": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet nulla eget dolor aliquet efficitur a in enim.",
+                          "cause3": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet nulla eget dolor aliquet efficitur a in enim.",
+                          "solution1"  : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet nulla eget dolor aliquet efficitur a in enim.",
+                          "solution2"  : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet nulla eget dolor aliquet efficitur a in enim.",
+                          "solution3"  : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet nulla eget dolor aliquet efficitur a in enim."
+                        }
+                   ]                          
+ 
+  } 
