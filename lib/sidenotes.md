@@ -6,3 +6,5 @@
 - About the app @ Alert dialog
 - nice eoverlay to guide how to take leaf pic
 - category selections....types of plants
+- after tap into category... choose Predictions or snap as not all places(especially farm) has internet conenction
+- replace all network image with asset image

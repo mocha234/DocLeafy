@@ -1,4 +1,4 @@
-Map<String, int> diseaseIndexMapping = {
+const Map<String, int> diseaseIndexMapping = {
   "Bacterial Spot": 0,
   "Early Blight": 1,
   "Late Blight": 2,

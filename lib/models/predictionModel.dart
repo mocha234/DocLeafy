@@ -1,4 +1,4 @@
-class Album {
+class Predicted {
   // final List tagId;
   //final String tagName;
 
@@ -8,16 +8,16 @@ class Album {
   final String created;
   final List<dynamic> predictions;
 
-  Album(
+  Predicted(
       {this.id, this.project, this.iteration, this.created, this.predictions});
 
-  factory Album.fromJson(Map<String, dynamic> json) {
+  factory Predicted.fromJson(Map<String, dynamic> json) {
     var list = json['predictions'] as List;
     print(list.runtimeType); //returns List<dynamic>
     List<Predictions> predictionList =
         list.map((i) => Predictions.fromJson(i)).toList();
 
-    return Album(
+    return Predicted(
       id: json['id'],
       project: json['project'],
       iteration: json['iteration'],

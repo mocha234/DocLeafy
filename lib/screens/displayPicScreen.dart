@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../models/albumModel.dart';
+import '../models/predictionModel.dart';
 import '../static/scaleTransition.dart';
 import '../static/infoScreen.dart';
 import 'package:http/http.dart' as http;
@@ -9,7 +9,7 @@ import 'dart:convert';
 import '../static/appBar.dart';
 import 'constantsInfo.dart';
 
-Future<Album> fetchAlbum(imagePath2File) async {
+Future<Predicted> fetchPredictions(imagePath2File) async {
   final bytes = Io.File(imagePath2File).readAsBytesSync();
 
   var uri = Uri.parse(
@@ -28,31 +28,31 @@ Future<Album> fetchAlbum(imagePath2File) async {
   //print(response.body[0][1]);
   print("0ssssss");
 
-  return Album.fromJson(jsonDecode(response.body));
+  return Predicted.fromJson(jsonDecode(response.body));
 }
 
 class DisplayPictureScreen extends StatefulWidget {
   final String imagePath;
-  final Future<Album> futureAlbum1;
-  DisplayPictureScreen({Key key, this.imagePath, this.futureAlbum1})
+  final Future<Predicted> futurePredictions1;
+  DisplayPictureScreen({Key key, this.imagePath, this.futurePredictions1})
       : super(key: key);
 
   @override
   _DisplayPictureScreenState createState() =>
-      _DisplayPictureScreenState(futureAlbum1, imagePath);
+      _DisplayPictureScreenState(futurePredictions1, imagePath);
 }
 
 class _DisplayPictureScreenState extends State<DisplayPictureScreen> {
-  Future<Album> futureAlbum1;
+  Future<Predicted> futurePredictions1;
   String imagePath;
   String textDisplay;
-  _DisplayPictureScreenState(this.futureAlbum1, this.imagePath);
+  _DisplayPictureScreenState(this.futurePredictions1, this.imagePath);
 
   @override
   void initState() {
     super.initState();
     print("Temp Image Path: " + imagePath);
-    futureAlbum1 = fetchAlbum(imagePath);
+    futurePredictions1 = fetchPredictions(imagePath);
   }
 
   @override
@@ -66,8 +66,8 @@ class _DisplayPictureScreenState extends State<DisplayPictureScreen> {
         children: [
           Image.file(File(widget.imagePath)),
           Center(
-            child: FutureBuilder<Album>(
-              future: futureAlbum1,
+            child: FutureBuilder<Predicted>(
+              future: futurePredictions1,
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
                   print("This is printed.");

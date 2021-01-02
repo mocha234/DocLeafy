@@ -20,7 +20,7 @@ class _GeneralInformationScreen extends State<GeneralInformationScreen> {
   List data = [];
 
   final String url = jsonInfoApi;
-  fetchnews() async {
+  fetchInfo() async {
     var response = await http.get(url);
     setState(() {
       var converted = json.decode(response.body);
@@ -43,78 +43,8 @@ class _GeneralInformationScreen extends State<GeneralInformationScreen> {
 
   void initState() {
     super.initState();
-    fetchnews();
+    fetchInfo();
   }
-
-  // List<Widget> _getListings() {
-  //   List listings = List<Widget>();
-  //   int i = 0;
-  //   int totalLength = data.length;
-  //   for (i = 0; i < totalLength; i++) {
-  //     listings.add(InkWell(
-  //       onTap: () {
-  //         Navigator.push(
-  //             context,
-  //             ScaleRoute(
-  //                 page: InformationScreen(
-  //               diseaseName: data[i]["name"],
-  //               diseaseInfo: data[i]["solution"],
-  //               diseaseSampleImage: 'https://picsum.photos/250?image=$i',
-  //             )));
-  //       },
-  //       child: Container(
-  //         height: 150,
-  //         child: Card(
-  //           elevation: 10,
-  //           margin: EdgeInsets.all(10),
-  //           shadowColor: Colors.white,
-  //           color: Colors.white,
-  //           clipBehavior: Clip.antiAlias,
-  //           shape: RoundedRectangleBorder(
-  //             borderRadius: BorderRadius.circular(10.0),
-  //           ),
-  //           child: Row(
-  //             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-  //             children: [
-  //               Padding(
-  //                 padding: const EdgeInsets.all(4.0),
-  //                 child: Image.network(
-  //                   'https://picsum.photos/250?image=$i',
-  //                   fit: BoxFit.cover,
-  //                 ),
-  //               ),
-  //               Expanded(
-  //                 child: Column(
-  //                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //                   children: [
-  //                     SizedBox(
-  //                       height: 5.0,
-  //                     ),
-  //                     Text(
-  //                       data[i]["name"],
-  //                       style: TextStyle(color: Colors.black),
-  //                     ),
-  //                     SizedBox(
-  //                       height: 5.0,
-  //                     ),
-  //                     Flexible(
-  //                       child: Text(
-  //                         data[i]["solution"],
-  //                         //textAlign: TextAlign.left,
-  //                         style: TextStyle(color: Colors.black),
-  //                       ),
-  //                     ),
-  //                   ],
-  //                 ),
-  //               ),
-  //             ],
-  //           ),
-  //         ),
-  //       ),
-  //     ));
-  //   }
-  //   return listings;
-  // }
 
   @override
   Widget build(BuildContext context) {
