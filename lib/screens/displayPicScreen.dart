@@ -1,22 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import "dart:io" as Io;
+
+import "dart:io";
 import '../models/predictionModel.dart';
 import '../static/scaleTransition.dart';
 import '../static/infoScreen.dart';
-import 'package:http/http.dart' as http;
-import "dart:io" as Io;
-import "dart:io";
-import 'dart:convert';
 import '../static/appBar.dart';
-import 'constantsInfo.dart';
+import './constantsInfo.dart';
 
-Future<Predicted> fetchPredictions(imagePath2File) async {
+Future<Predicted> fetchPredictions(imagePath2File, int categoryIndex) async {
   final bytes = Io.File(imagePath2File).readAsBytesSync();
+  final String endpointAPI = projectAPI[categoryIndex]["APIEndpoint"];
+  final String predictionKey = projectAPI[categoryIndex]["Prediction-Key"];
+  final String contentType = projectAPI[categoryIndex]["Content-Type"];
 
-  var uri = Uri.parse(
-      "https://southcentralus.api.cognitive.microsoft.com/customvision/v3.0/Prediction/c1e64998-1818-447c-aaaf-c843556c689d/classify/iterations/Iteration1/image");
+  var uri = Uri.parse(endpointAPI);
   var request = new http.Request("POST", uri)
-    ..headers['Prediction-Key'] = "c7b138e5496f410ca88bafff534d13da"
-    ..headers['Content-Type'] = "application/octet-stream"
+    ..headers['Prediction-Key'] = predictionKey
+    ..headers['Content-Type'] = contentType
     ..bodyBytes = bytes;
 
   http.Response response = await http.Response.fromStream(await request.send());
@@ -25,7 +28,6 @@ Future<Predicted> fetchPredictions(imagePath2File) async {
   print(response.statusCode);
   print(response.body);
   print("sssswfgges");
-  //print(response.body[0][1]);
   print("0ssssss");
 
   return Predicted.fromJson(jsonDecode(response.body));
@@ -34,7 +36,9 @@ Future<Predicted> fetchPredictions(imagePath2File) async {
 class DisplayPictureScreen extends StatefulWidget {
   final String imagePath;
   final Future<Predicted> futurePredictions1;
-  DisplayPictureScreen({Key key, this.imagePath, this.futurePredictions1})
+  final int categoryIndex;
+  DisplayPictureScreen(
+      {Key key, this.imagePath, this.futurePredictions1, this.categoryIndex})
       : super(key: key);
 
   @override
@@ -52,7 +56,8 @@ class _DisplayPictureScreenState extends State<DisplayPictureScreen> {
   void initState() {
     super.initState();
     print("Temp Image Path: " + imagePath);
-    futurePredictions1 = fetchPredictions(imagePath);
+    print("categoryIndex: " + widget.categoryIndex.toString());
+    futurePredictions1 = fetchPredictions(imagePath, widget.categoryIndex);
   }
 
   @override

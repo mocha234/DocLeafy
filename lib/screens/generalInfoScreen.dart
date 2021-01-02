@@ -89,14 +89,11 @@ class _GeneralInformationScreen extends State<GeneralInformationScreen> {
                               'https://picsum.photos/250?image=$index',
                               fit: BoxFit.cover),
                         ),
-                        // enabled: data[index]['name'] == 'Bacterial Spot'
-                        //     ? true
-                        //     : false,
                         title: new Text(
                           data[index]['name'],
                         ),
                         subtitle: new Text(
-                            "\nSome snapshot info " + data[index]['name']),
+                            "\nSome snapshot info " + data[index]['intro']),
                       ),
                     ),
                   ),
@@ -104,6 +101,7 @@ class _GeneralInformationScreen extends State<GeneralInformationScreen> {
               ),
             );
           },
-        ));
+        )
+        );
   }
 }

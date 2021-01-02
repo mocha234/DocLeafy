@@ -10,4 +10,18 @@ const Map<String, int> diseaseIndexMapping = {
   "Yellow Leaf Curl Virus": 8,
 };
 
+const Map<int, Map<String, String>> projectAPI = {
+  0: {
+    "APIEndpoint":
+        "https://southcentralus.api.cognitive.microsoft.com/customvision/v3.0/Prediction/c1e64998-1818-447c-aaaf-c843556c689d/classify/iterations/Iteration1/image",
+    "Prediction-Key": "c7b138e5496f410ca88bafff534d13da",
+    "Content-Type": "application/octet-stream"
+  }
+};
+
 const String jsonInfoApi = "https://jsonkeeper.com/b/Q0GB";
+
+const Map<int, Map<String, String>> categoriesMap = {
+  0: {"name": "Tomato", "imagePath": "assets/images/tomatoIcon.png"},
+  1: {"name": "Potato", "imagePath": "assets/images/potatoIcon.png"}
+};

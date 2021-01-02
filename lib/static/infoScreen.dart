@@ -24,16 +24,9 @@ Future<Info> fetchInfo() async {
 }
 
 class InformationScreen extends StatefulWidget {
-  // final int diseaseSampleImage;
-  // final int diseaseName;
-  // final int diseaseInfo;
   final int selpredDis; //Selected or Predition Disease
 
-  InformationScreen(
-      {Key key,
-      // this.diseaseInfo, this.diseaseName, this.diseaseSampleImage,
-      this.selpredDis})
-      : super(key: key);
+  InformationScreen({Key key, this.selpredDis}) : super(key: key);
 
   @override
   _InformationScreenState createState() => _InformationScreenState();

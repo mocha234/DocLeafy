@@ -10,11 +10,11 @@ import 'displayPicScreen.dart';
 
 class TakePictureScreen extends StatefulWidget {
   final CameraDescription camera;
+  final int categoryIndex;
 
-  const TakePictureScreen({
-    Key key,
-    @required this.camera,
-  }) : super(key: key);
+  const TakePictureScreen(
+      {Key key, @required this.camera, @required this.categoryIndex})
+      : super(key: key);
 
   @override
   _TakePictureScreenState createState() => _TakePictureScreenState();
@@ -25,7 +25,6 @@ class _TakePictureScreenState extends State<TakePictureScreen> {
   Future<void> _initializeControllerFuture;
   Future<Predicted> futurePredictions;
   bool _visible = true;
-  // XFile imageFile;
   String newPath;
 
   @override
@@ -143,6 +142,7 @@ class _TakePictureScreenState extends State<TakePictureScreen> {
                 builder: (context) => DisplayPictureScreen(
                   imagePath: path,
                   futurePredictions1: futurePredictions,
+                  categoryIndex: widget.categoryIndex,
                 ),
               ),
             );
