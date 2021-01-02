@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:path/path.dart' show join;
 import 'package:path_provider/path_provider.dart';
 
-import './albumModel.dart';
-import './displayPic.dart';
+import 'models/albumModel.dart';
+import 'screens/displayPicScreen.dart';
 
 //import './appBar.dart';
 
@@ -66,10 +66,10 @@ class TakePictureScreen extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  TakePictureScreenState createState() => TakePictureScreenState();
+  _TakePictureScreenState createState() => _TakePictureScreenState();
 }
 
-class TakePictureScreenState extends State<TakePictureScreen> {
+class _TakePictureScreenState extends State<TakePictureScreen> {
   CameraController _controller;
   Future<void> _initializeControllerFuture;
   Future<Album> futureAlbum;
