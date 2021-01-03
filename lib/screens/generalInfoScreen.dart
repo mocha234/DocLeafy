@@ -10,7 +10,8 @@ import 'constantsInfo.dart';
 final String url = jsonInfoApi;
 
 class GeneralInformationScreen extends StatefulWidget {
-  GeneralInformationScreen({Key key}) : super(key: key);
+  final String plantName;
+  GeneralInformationScreen({Key key, this.plantName}) : super(key: key);
 
   @override
   _GeneralInformationScreen createState() => _GeneralInformationScreen();
@@ -24,7 +25,9 @@ class _GeneralInformationScreen extends State<GeneralInformationScreen> {
     var response = await http.get(url);
     setState(() {
       var converted = json.decode(response.body);
-      data = converted['disease'];
+      //data = converted['disease'];
+      data = converted[widget.plantName];
+      print(data);
       print(data[0]["name"]);
       print(data[0]["solution"]);
       print("Data length");

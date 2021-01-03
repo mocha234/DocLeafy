@@ -3,13 +3,14 @@ class Info {
 
   Info({this.diseaseInfos});
 
-  factory Info.fromJson(Map<String, dynamic> json) {
-    var list = json['disease'] as List;
+  factory Info.fromJson(Map<String, dynamic> json, String typeOfPlant) {
+    var list = json[typeOfPlant] as List;
     print(list.runtimeType); //returns List<dynamic>
     List<DiseaseInfo> diseaseInfosList =
         list.map((i) => DiseaseInfo.fromJson(i)).toList();
 
     return Info(
+
       diseaseInfos: diseaseInfosList,
     );
   }

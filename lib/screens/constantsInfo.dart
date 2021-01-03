@@ -16,10 +16,16 @@ const Map<int, Map<String, int>> diseaseIndexMapping = {
     "Healthy": 9
   },
   1: {
-    "Leaf scorch": 0,
-    "Powdery Mildew Disease": 1,
-    "Verticillium Wilt": 2,
-    "Healthy": 3
+    "Bacterial Spot": 0,
+    "Early Blight": 1,
+    "Late Blight": 2,
+    "Leaf Mold": 3,
+    "Mosaic Virus": 4,
+    "Septoria Leaf Spot": 5,
+    "Spider Mites": 6,
+    "Target Spot": 7,
+    "Yellow Leaf Curl Virus": 8,
+    "Healthy": 9
   }
 };
 
@@ -42,9 +48,9 @@ const Map<int, Map<String, String>> projectAPI = {
   }
 };
 
-const String jsonInfoApi = "https://jsonkeeper.com/b/Q0GB";
+const String jsonInfoApi = "https://jsonkeeper.com/b/LOHJ";
 
-const Map<int, Map<String, String>> categoriesMap = {
+const Map<int, Map<String, String>> plantName = {
   0: {"name": "Tomato", "imagePath": "assets/images/tomatoIcon.png"},
   1: {"name": "Strawberry", "imagePath": "assets/images/strawberryIcon.png"}
 };

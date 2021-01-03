@@ -138,6 +138,7 @@ class _DisplayPictureScreenState extends State<DisplayPictureScreen> {
                           page: InformationScreen(
                         selpredDis: diseaseIndexMapping[widget.categoryIndex]
                             [textDisplay],
+                        plantName: plantName[widget.categoryIndex]["name"],
                         diseaseName: textDisplay,
                       )));
                 },
@@ -155,8 +156,13 @@ class _DisplayPictureScreenState extends State<DisplayPictureScreen> {
                 ),
                 onPressed: () {
                   print("Navigating to General InfoPage");
+                  print(plantName[widget.categoryIndex]["name"]);
                   Navigator.push(
-                      context, ScaleRoute(page: GeneralInformationScreen()));
+                      context,
+                      ScaleRoute(
+                          page: GeneralInformationScreen(
+                        plantName: plantName[widget.categoryIndex]["name"],
+                      )));
                 },
               ),
             ],

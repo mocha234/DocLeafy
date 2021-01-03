@@ -88,7 +88,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
             mainAxisSpacing: 3.0,
           ),
           physics: BouncingScrollPhysics(),
-          itemCount: categoriesMap.length,
+          itemCount: plantName.length,
           itemBuilder: (BuildContext context, int index) {
             return GestureDetector(
               onTap: () {
@@ -117,7 +117,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                     //Change Image, use map to insert filepath and pass to assetimage belwo
                     //Image.asset(categoriesMap[index]["imagePath"]),
                     Icon(Icons.ac_unit),
-                    Text(categoriesMap[index]["name"]),
+                    Text(plantName[index]["name"]),
                   ],
                 ),
               ),

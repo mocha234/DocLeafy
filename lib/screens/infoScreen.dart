@@ -7,7 +7,7 @@ import '../models/infoModel.dart';
 import 'constantsInfo.dart';
 
 final String url = jsonInfoApi;
-Future<Info> fetchInfo() async {
+Future<Info> fetchInfo(String plantName) async {
   final response = await http.get(url);
 
   if (response.statusCode == 200) {
@@ -15,7 +15,10 @@ Future<Info> fetchInfo() async {
     // then parse the JSON.
     print("Statusssss: 200");
     print(response.body);
-    return Info.fromJson(jsonDecode(response.body));
+    return Info.fromJson(
+      jsonDecode(response.body),
+      plantName
+    );
   } else {
     // If the server did not return a 200 OK response,
     // then throw an exception.
@@ -25,9 +28,10 @@ Future<Info> fetchInfo() async {
 
 class InformationScreen extends StatefulWidget {
   final int selpredDis; //Selected or Predition Disease
+  final String plantName;
   final String diseaseName;
 
-  InformationScreen({Key key, this.selpredDis, this.diseaseName})
+  InformationScreen({Key key, this.selpredDis, this.diseaseName, this.plantName})
       : super(key: key);
 
   @override
@@ -39,7 +43,7 @@ class _InformationScreenState extends State<InformationScreen> {
 
   void initState() {
     super.initState();
-    futureInfo = fetchInfo();
+    futureInfo = fetchInfo(widget.plantName);
   }
 
   @override
