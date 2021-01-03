@@ -97,6 +97,16 @@
                           "solution1"  : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet nulla eget dolor aliquet efficitur a in enim.",
                           "solution2"  : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet nulla eget dolor aliquet efficitur a in enim.",
                           "solution3"  : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet nulla eget dolor aliquet efficitur a in enim."
+                        },
+                        { 
+                          "name" : "Healthy",  
+                          "intro":"This Plant is healthy!",
+                          "cause1": "",
+                          "cause2": "",
+                          "cause3": "",
+                          "solution1"  : "",
+                          "solution2"  : "",
+                          "solution3"  : "" 
                         }
                    ]                          
  

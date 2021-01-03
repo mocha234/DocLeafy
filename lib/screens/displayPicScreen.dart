@@ -68,7 +68,8 @@ class _DisplayPictureScreenState extends State<DisplayPictureScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).accentColor,
-      appBar: standardAppBar(context: context, appBarName: "Disease Identified"),
+      appBar:
+          standardAppBar(context: context, appBarName: "Disease Identified"),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -129,11 +130,14 @@ class _DisplayPictureScreenState extends State<DisplayPictureScreen> {
                 onPressed: () {
                   print("Passing arguments");
                   print("textDisplay = " + textDisplay);
+                  print(diseaseIndexMapping[widget.categoryIndex][textDisplay]
+                      .toString());
                   Navigator.push(
                       context,
                       ScaleRoute(
                           page: InformationScreen(
-                        selpredDis: diseaseIndexMapping[textDisplay],
+                        selpredDis: diseaseIndexMapping[widget.categoryIndex]
+                            [textDisplay],
                         diseaseName: textDisplay,
                       )));
                 },
