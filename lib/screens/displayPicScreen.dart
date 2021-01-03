@@ -37,27 +37,30 @@ class DisplayPictureScreen extends StatefulWidget {
   final String imagePath;
   final Future<Predicted> futurePredictions1;
   final int categoryIndex;
+
   DisplayPictureScreen(
       {Key key, this.imagePath, this.futurePredictions1, this.categoryIndex})
       : super(key: key);
 
   @override
-  _DisplayPictureScreenState createState() =>
-      _DisplayPictureScreenState(futurePredictions1, imagePath);
+  _DisplayPictureScreenState createState() => _DisplayPictureScreenState(
+      //futurePredictions1, imagePath
+      );
 }
 
 class _DisplayPictureScreenState extends State<DisplayPictureScreen> {
   Future<Predicted> futurePredictions1;
-  String imagePath;
+  //String imagePath;
   String textDisplay;
-  _DisplayPictureScreenState(this.futurePredictions1, this.imagePath);
+  //_DisplayPictureScreenState(this.futurePredictions1, this.imagePath);
 
   @override
   void initState() {
     super.initState();
-    print("Temp Image Path: " + imagePath);
+    print("Temp Image Path: " + widget.imagePath);
     print("categoryIndex: " + widget.categoryIndex.toString());
-    futurePredictions1 = fetchPredictions(imagePath, widget.categoryIndex);
+    futurePredictions1 =
+        fetchPredictions(widget.imagePath, widget.categoryIndex);
   }
 
   @override

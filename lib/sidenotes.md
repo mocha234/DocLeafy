@@ -10,3 +10,4 @@
 - replace all network image with asset image
 - camera cant focus if got the overlay thing..take note
 - Icons for category page
+- App bar...not so good

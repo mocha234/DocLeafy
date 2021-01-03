@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:tomatodiseasechecker/screens/displayPicScreen.dart';
 
 import '../screens/constantsInfo.dart';
 import '../static/appBar.dart';
@@ -18,6 +20,62 @@ class CategoriesScreen extends StatefulWidget {
 }
 
 class _CategoriesScreenState extends State<CategoriesScreen> {
+  String _imagePath;
+  final picker = ImagePicker();
+
+  Future _getImageFromGallery(int index) async {
+    final pickedFile = await picker.getImage(source: ImageSource.gallery);
+    setState(() {
+      if (pickedFile != null) {
+        _imagePath = pickedFile.path;
+        Navigator.push(
+            context,
+            ScaleRoute(
+                page: DisplayPictureScreen(
+              categoryIndex: index,
+              imagePath: _imagePath,
+            )));
+      } else {
+        print('No image selected.');
+      }
+    });
+  }
+
+  void _showPicker(context, int index) {
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext bc) {
+          return SafeArea(
+            child: Container(
+              child: new Wrap(
+                children: <Widget>[
+                  new ListTile(
+                      leading: new Icon(Icons.photo_library),
+                      title: new Text('Photo Library'),
+                      onTap: () {
+                        _getImageFromGallery(index);
+                      }),
+                  new ListTile(
+                    leading: new Icon(Icons.photo_camera),
+                    title: new Text('Camera'),
+                    onTap: () {
+                      
+                      Navigator.push(
+                          context,
+                          ScaleRoute(
+                              page: TakePictureScreen(
+                            camera: widget.camera,
+                            categoryIndex: index,
+                          )));
+                    },
+                  ),
+                ],
+              ),
+            ),
+          );
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,15 +93,16 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
           itemBuilder: (BuildContext context, int index) {
             return GestureDetector(
               onTap: () {
-                // runOnce();
                 print(index);
-                Navigator.push(
-                    context,
-                    ScaleRoute(
-                        page: TakePictureScreen(
-                      camera: widget.camera,
-                      categoryIndex: index,
-                    )));
+                _showPicker(context, index);
+
+                // Navigator.push(
+                //     context,
+                //     ScaleRoute(
+                //         page: TakePictureScreen(
+                //       camera: widget.camera,
+                //       categoryIndex: index,
+                //     )));
               },
               child: Container(
                 margin: EdgeInsets.fromLTRB(4.0, 7.0, 4.0, 0.0),
