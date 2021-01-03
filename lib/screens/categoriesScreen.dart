@@ -4,7 +4,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:tomatodiseasechecker/screens/displayPicScreen.dart';
 
 import '../screens/constantsInfo.dart';
-import '../static/appBar.dart';
+import '../static/appBars.dart';
 import '../static/scaleTransition.dart';
 import '../screens/takePicScreen.dart';
 
@@ -59,7 +59,6 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                     leading: new Icon(Icons.photo_camera),
                     title: new Text('Camera'),
                     onTap: () {
-                      
                       Navigator.push(
                           context,
                           ScaleRoute(
@@ -80,7 +79,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).accentColor,
-      appBar: appBar(context, iconB: true),
+      appBar: appBar(context: context, appBarName: 'Plant Disease Identifier'),
       body: Container(
         child: GridView.builder(
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

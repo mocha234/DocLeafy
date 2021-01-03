@@ -24,8 +24,34 @@ class _TakePictureScreenState extends State<TakePictureScreen> {
   CameraController _controller;
   Future<void> _initializeControllerFuture;
   Future<Predicted> futurePredictions;
-  bool _visible = true;
+  // bool _visible = true;
   String newPath;
+
+  void _appInfo() {
+    showDialog(
+        //barrierDismissible: false,
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            content: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Text(
+                  "How to use?",
+                  style: TextStyle(color: Theme.of(context).primaryColor),
+                ),
+                Text(
+                  "Just take a picture of leaf as clear as possible!",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Theme.of(context).primaryColor,
+                  ),
+                ),
+              ],
+            ),
+          );
+        });
+  }
 
   @override
   void initState() {
@@ -54,14 +80,23 @@ class _TakePictureScreenState extends State<TakePictureScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: appBar(context),
       extendBodyBehindAppBar: true,
-
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: Colors.transparent,
         elevation: 0,
-        title: Text("Plant Disease Identifier"),
+        title: Text("Take a picture of the Leaf"),
+        actions: [
+          IconButton(
+            icon: Icon(
+              Icons.info_outline,
+              color: Theme.of(context).accentColor,
+            ),
+            onPressed: () {
+              _appInfo();
+            },
+          )
+        ],
       ),
       // Wait until the controller is initialized before displaying the
       // camera preview. Use a FutureBuilder to display a loading spinner
@@ -71,37 +106,37 @@ class _TakePictureScreenState extends State<TakePictureScreen> {
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
             // If the Future is complete, display the preview.
-            //return CameraPreview(_controller);
+            return CameraPreview(_controller);
 ///////////////////////////////////////////////////////////////////////////////////
 
-            return new Stack(
-              alignment: FractionalOffset.center,
-              children: <Widget>[
-                new Positioned.fill(
-                  child: new AspectRatio(
-                      aspectRatio: _controller.value.aspectRatio,
-                      child: new CameraPreview(_controller)),
-                ),
-                new Positioned.fill(
-                  child: Center(
-                    child: Opacity(
-                      opacity: _visible ? 1.0 : 0.0,
-                      child: GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            _visible = !_visible;
-                          });
-                        },
-                        child: Image.network(
-                          'https://www.clipartmax.com/png/middle/50-501160_leaves-outline-clip-art-clip-art.png',
-                          fit: BoxFit.fill,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            );
+            // return new Stack(
+            //   alignment: FractionalOffset.center,
+            //   children: <Widget>[
+            //     new Positioned.fill(
+            //       child: new AspectRatio(
+            //           aspectRatio: _controller.value.aspectRatio,
+            //           child: new CameraPreview(_controller)),
+            //     ),
+            //     new Positioned.fill(
+            //       child: Center(
+            //         child: Opacity(
+            //           opacity: _visible ? 1.0 : 0.0,
+            //           child: GestureDetector(
+            //             onTap: () {
+            //               setState(() {
+            //                 _visible = !_visible;
+            //               });
+            //             },
+            //             child: Image.network(
+            //               'https://www.clipartmax.com/png/middle/50-501160_leaves-outline-clip-art-clip-art.png',
+            //               fit: BoxFit.fill,
+            //             ),
+            //           ),
+            //         ),
+            //       ),
+            //     ),
+            //   ],
+            // );
 
 /////////////////////////////////////////////////////////////////////////////////////
           } else {

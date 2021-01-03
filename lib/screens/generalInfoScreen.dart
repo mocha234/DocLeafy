@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 //import './myWebView.dart';
-import '../static/appBar.dart';
+import '../static/appBars.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import '../static/scaleTransition.dart';
-import '../static/infoScreen.dart';
+import 'infoScreen.dart';
 import 'constantsInfo.dart';
 
 final String url = jsonInfoApi;
@@ -49,7 +49,8 @@ class _GeneralInformationScreen extends State<GeneralInformationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: appBar(context, iconB: true),
+        appBar: standardAppBar(
+            context: context, appBarName: "Other Diseases' Information"),
         body: ListView.builder(
           physics: BouncingScrollPhysics(),
           itemCount: data.length,
@@ -101,7 +102,6 @@ class _GeneralInformationScreen extends State<GeneralInformationScreen> {
               ),
             );
           },
-        )
-        );
+        ));
   }
 }

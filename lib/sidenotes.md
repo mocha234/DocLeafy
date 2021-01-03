@@ -5,9 +5,8 @@
 - logos for splash screen
 - About the app @ Alert dialog
 - nice eoverlay to guide how to take leaf pic
-- category selections....types of plants
-- after tap into category... choose Predictions or snap as not all places(especially farm) has internet conenction
 - replace all network image with asset image
 - camera cant focus if got the overlay thing..take note
-- Icons for category page
+- Icons for category page (try Rufuos: A50104 (HEX))
+- disease index for other plant
 - App bar...not so good

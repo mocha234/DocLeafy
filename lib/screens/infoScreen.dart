@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 //import './myWebView.dart';
-import 'appBar.dart';
+import '../static/appBars.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import '../models/infoModel.dart';
-import '../screens/constantsInfo.dart';
+import 'constantsInfo.dart';
 
 final String url = jsonInfoApi;
 Future<Info> fetchInfo() async {
@@ -25,8 +25,10 @@ Future<Info> fetchInfo() async {
 
 class InformationScreen extends StatefulWidget {
   final int selpredDis; //Selected or Predition Disease
+  final String diseaseName;
 
-  InformationScreen({Key key, this.selpredDis}) : super(key: key);
+  InformationScreen({Key key, this.selpredDis, this.diseaseName})
+      : super(key: key);
 
   @override
   _InformationScreenState createState() => _InformationScreenState();
@@ -45,7 +47,8 @@ class _InformationScreenState extends State<InformationScreen> {
     print("Index of the Disease name is " + widget.selpredDis.toString());
     return Scaffold(
         backgroundColor: Theme.of(context).accentColor,
-        appBar: appBar(context),
+        appBar:
+            standardAppBar(context: context, appBarName: widget.diseaseName),
         body: Container(
           margin: EdgeInsets.fromLTRB(12.0, 0.0, 12.0, 0),
           child: SingleChildScrollView(

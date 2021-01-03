@@ -14,8 +14,8 @@ Future<void> main() async {
   runApp(
     MaterialApp(
       theme: ThemeData(
-        primaryColor: Color(0xFF486942),
-        accentColor: Color(0xFFEFEFE8),
+        primaryColor: Color(0xFF486942), //Hunter Green
+        accentColor: Color(0xFFEFEFE8), //Alabaster
         fontFamily: GoogleFonts.ubuntu().fontFamily,
       ),
       home: CategoriesScreen(

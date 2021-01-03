@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:tomatodiseasechecker/screens/generalInfoScreen.dart';
 import 'dart:convert';
 import "dart:io" as Io;
 
 import "dart:io";
 import '../models/predictionModel.dart';
 import '../static/scaleTransition.dart';
-import '../static/infoScreen.dart';
-import '../static/appBar.dart';
+import 'infoScreen.dart';
+import '../static/appBars.dart';
 import './constantsInfo.dart';
 
 Future<Predicted> fetchPredictions(imagePath2File, int categoryIndex) async {
@@ -67,7 +68,7 @@ class _DisplayPictureScreenState extends State<DisplayPictureScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).accentColor,
-      appBar: appBar(context),
+      appBar: standardAppBar(context: context, appBarName: "Disease Identified"),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -84,6 +85,7 @@ class _DisplayPictureScreenState extends State<DisplayPictureScreen> {
                   print(snapshot.data.predictions[0].tagName);
 
                   textDisplay = snapshot.data.predictions[0].tagName.toString();
+                  // Index 0 has the highest probabilty
 
                   return Column(
                     children: [
@@ -111,27 +113,49 @@ class _DisplayPictureScreenState extends State<DisplayPictureScreen> {
               },
             ),
           ),
-          RaisedButton(
-            elevation: 8.0,
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10.0),
-                side: BorderSide(color: Theme.of(context).primaryColor)),
-            textColor: Theme.of(context).primaryColor,
-            color: Theme.of(context).accentColor,
-            padding: const EdgeInsets.all(8.0),
-            child: new Text(
-              "Info about the disease",
-            ),
-            onPressed: () {
-              print("Passing arguments");
-              print("textDisplay = " + textDisplay);
-              Navigator.push(
-                  context,
-                  ScaleRoute(
-                      page: InformationScreen(
-                    selpredDis: diseaseIndexMapping[textDisplay],
-                  )));
-            },
+          Column(
+            children: [
+              RaisedButton(
+                elevation: 8.0,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                    side: BorderSide(color: Theme.of(context).primaryColor)),
+                textColor: Theme.of(context).primaryColor,
+                color: Theme.of(context).accentColor,
+                padding: const EdgeInsets.all(8.0),
+                child: new Text(
+                  "Info about the disease",
+                ),
+                onPressed: () {
+                  print("Passing arguments");
+                  print("textDisplay = " + textDisplay);
+                  Navigator.push(
+                      context,
+                      ScaleRoute(
+                          page: InformationScreen(
+                        selpredDis: diseaseIndexMapping[textDisplay],
+                        diseaseName: textDisplay,
+                      )));
+                },
+              ),
+              RaisedButton(
+                elevation: 8.0,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                    side: BorderSide(color: Theme.of(context).primaryColor)),
+                textColor: Theme.of(context).primaryColor,
+                color: Theme.of(context).accentColor,
+                padding: const EdgeInsets.all(8.0),
+                child: new Text(
+                  "Other diseases' Info",
+                ),
+                onPressed: () {
+                  print("Navigating to General InfoPage");
+                  Navigator.push(
+                      context, ScaleRoute(page: GeneralInformationScreen()));
+                },
+              ),
+            ],
           ),
         ],
       ),

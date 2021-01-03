@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'scaleTransition.dart';
-import '../screens/generalInfoScreen.dart';
 
-Widget appBar(BuildContext context, {bool iconB}) {
+Widget appBar({BuildContext context, String appBarName}) {
   void _appInfo() {
     showDialog(
         //barrierDismissible: false,
@@ -32,28 +30,30 @@ Widget appBar(BuildContext context, {bool iconB}) {
   return AppBar(
     centerTitle: true,
     title: Text(
-      'Plant Disease Identifier',
+      appBarName,
       style: TextStyle(color: Theme.of(context).accentColor
           // Colors.white
           ),
     ),
     backgroundColor: Theme.of(context).primaryColor,
     actions: [
-      iconB == true
-          ? IconButton(
-              icon: Icon(Icons.people_outline),
-              onPressed: _appInfo,
-            )
-          : IconButton(
-              icon: Icon(
-                Icons.info_outline,
-                color: Theme.of(context).accentColor,
-              ),
-              onPressed: () {
-                Navigator.push(
-                    context, ScaleRoute(page: GeneralInformationScreen()));
-              },
-            )
+      IconButton(
+        icon: Icon(Icons.info_outline),
+        onPressed: _appInfo,
+      )
     ],
+  );
+}
+
+Widget standardAppBar({BuildContext context, String appBarName}) {
+  return AppBar(
+    centerTitle: true,
+    title: Text(
+      appBarName,
+      style: TextStyle(color: Theme.of(context).accentColor
+          // Colors.white
+          ),
+    ),
+    backgroundColor: Theme.of(context).primaryColor,
   );
 }
