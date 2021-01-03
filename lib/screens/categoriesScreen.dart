@@ -77,6 +77,8 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
 
   @override
   Widget build(BuildContext context) {
+
+    
     return Scaffold(
       backgroundColor: Theme.of(context).accentColor,
       appBar: appBar(context: context, appBarName: 'Plant Disease Identifier'),

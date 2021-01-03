@@ -14,6 +14,7 @@ Widget appBar({BuildContext context, String appBarName}) {
                   "An App by Team Alam",
                   style: TextStyle(color: Theme.of(context).primaryColor),
                 ),
+                Image.asset("assets/images/DocLeafy_Logo_banner.png"),
                 Text(
                   "This App is for Microsoft ImaginceCup's Participation",
                   textAlign: TextAlign.center,

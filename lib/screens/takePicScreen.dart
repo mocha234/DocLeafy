@@ -1,12 +1,13 @@
 import 'dart:async';
-
+import 'package:rive/rive.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:path/path.dart' show join;
 import 'package:path_provider/path_provider.dart';
 
 import '../models/predictionModel.dart';
-import 'displayPicScreen.dart';
+import './displayPicScreen.dart';
 
 class TakePictureScreen extends StatefulWidget {
   final CameraDescription camera;
@@ -21,6 +22,16 @@ class TakePictureScreen extends StatefulWidget {
 }
 
 class _TakePictureScreenState extends State<TakePictureScreen> {
+  // void _togglePlay() {
+  //   setState(
+  //       () => _animationController.isActive = !_animationController.isActive);
+  // }
+
+  /// Tracks if the animation is playing by whether controller is running.
+  bool get isPlaying => _animationController?.isActive ?? false;
+  Artboard _riveArtboard;
+  RiveAnimationController _animationController;
+
   CameraController _controller;
   Future<void> _initializeControllerFuture;
   Future<Predicted> futurePredictions;
@@ -39,6 +50,15 @@ class _TakePictureScreenState extends State<TakePictureScreen> {
                 Text(
                   "How to use?",
                   style: TextStyle(color: Theme.of(context).primaryColor),
+                ),
+                SizedBox(
+                  height: 200.0,
+                  width: 200.0,
+                  child: Container(
+                    child: _riveArtboard == null
+                        ? const SizedBox()
+                        : Rive(artboard: _riveArtboard),
+                  ),
                 ),
                 Text(
                   "Just take a picture of leaf as clear as possible!",
@@ -68,6 +88,23 @@ class _TakePictureScreenState extends State<TakePictureScreen> {
 
     // Next, initialize the controller. This returns a Future.
     _initializeControllerFuture = _controller.initialize();
+    rootBundle.load('assets/animation/howtotakepic.riv').then(
+      (data) async {
+        final file = RiveFile();
+
+        // Load the RiveFile from the binary data.
+        if (file.import(data)) {
+          // The artboard is the root of the animation and gets drawn in the
+          // Rive widget.
+          final artboard = file.mainArtboard;
+          // Add a controller to play back a known animation on the main/default
+          // artboard.We store a reference to it so we can toggle playback.
+          artboard
+              .addController(_animationController = SimpleAnimation('howto'));
+          setState(() => _riveArtboard = artboard);
+        }
+      },
+    );
   }
 
   @override
