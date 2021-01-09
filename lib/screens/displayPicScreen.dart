@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:tomatodiseasechecker/screens/generalInfoScreen.dart';
-import 'package:http_parser/http_parser.dart';
+//import 'package:http_parser/http_parser.dart';
+import 'dart:convert';
 
 import "dart:io";
 import '../models/predictionModel.dart';
@@ -10,33 +11,45 @@ import 'infoScreen.dart';
 import '../static/appBars.dart';
 import './constantsInfo.dart';
 
-fetchInfo(String filename, String url) async {
+Future<Predicted> fetchInfo(String filename, String url) async {
   print("fetchInfo");
   var postUri = Uri.parse(url);
   var request = http.MultipartRequest("POST", postUri);
-  final file = await http.MultipartFile.fromPath('uploaded_image', filename,
-      contentType: MediaType('image', 'jpg'));
+  final file = await http.MultipartFile.fromPath(
+    'uploaded_image', filename,
+    //contentType: MediaType('image', 'jpg')
+  );
 
   request.files.add(file);
   print(request.files);
 
-  request.send().then((result) {
-    http.Response.fromStream(result).then((response) {
-      if (response.statusCode == 200) {
-        print("Uploaded! ");
-        print('response.body ' + response.body);
-      }
+  // request.send().then((result) {
+  //   http.Response.fromStream(result).then((response) {
+  //     if (response.statusCode == 200) {
+  //       print("Uploaded! ");
+  //       print('response.body :' + response.body);
+  //     }
+  //     return Predicted.fromJson(jsonDecode(response.body));
+  //     //return response.body;
+  //   });
 
-      return response.body;
-    });
-    //request.send().then((response) {
-    // print("ssssss");
-    // print(response.statusCode);
-    // print(response.body);
-    // print(response.stream.bytesToString());
+  //   //request.send().then((response) {
+  //   // print("ssssss");
+  //   // print(response.statusCode);
+  //   // print(response.body);
+  //   // print(response.stream.bytesToString());
 
-    // if (response.statusCode == 200) print("Uploaded!");
-  });
+  //   // if (response.statusCode == 200) print("Uploaded!");
+  // });
+
+  http.Response response = await http.Response.fromStream(await request.send());
+  print(request);
+  print("Result: ${response.statusCode}");
+  print(response.statusCode);
+  print(response.body);
+
+  return Predicted.fromJson(jsonDecode(response.body));
+
   // try {
   //   http.StreamedResponse response = await request.send();
   //   var responseByteArray = await response.stream.toBytes();
@@ -121,18 +134,18 @@ class _DisplayPictureScreenState extends State<DisplayPictureScreen> {
           //   child: FutureBuilder<Predicted>(
           //     future: futurePredictions1,
           Center(
-            child: FutureBuilder<dynamic>(
-              future: fetchInfo(
-                  widget.imagePath, "http://20.83.176.144:5000/predict-tomato"),
+            child: FutureBuilder<Predicted>(
+              future: fetchInfo(widget.imagePath,
+                  plantName[widget.categoryIndex]["apiEndPoint"]),
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
                   print("snapshot has data");
-                  // print("This is printed.");
+                  print("This is printed.");
                   // print(snapshot.data.toString());
                   // print(snapshot.data.predictions);
-                  // print(snapshot.data.predictions[0].tagName);
+                  print(snapshot.data.outPut.tagName);
 
-                  // textDisplay = snapshot.data.predictions[0].tagName.toString();
+                  textDisplay = snapshot.data.outPut.tagName.toString();
                   // // Index 0 has the highest probabilty
 
                   return Column(

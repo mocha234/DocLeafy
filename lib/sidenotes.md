@@ -1,9 +1,8 @@
 ## TODO
 
-- Infos
-- try with hansheng api
-  ^^^^^IMplement it
+- remind han sheng disease name must be exactly same as @ constnat.dart
 - TO CHANGE @ constantsInfo:
   -> diseaseIndexMapping
   -> APIEndpoint
   -> jsonInfoApi
+- reference

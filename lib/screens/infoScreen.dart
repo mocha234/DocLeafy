@@ -1,28 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../static/appBars.dart';
-import 'dart:convert';
-import 'package:http/http.dart' as http;
-import '../models/infoModel.dart';
-import 'constantsInfo.dart';
+// import 'dart:convert';
+// import 'package:http/http.dart' as http;
+// import '../models/infoModel.dart';
+import './constantsInfo.dart';
 
-final String url = jsonInfoApi;
 
-Future<Info> fetchInfo(String plantName) async {
-  final response = await http.get(url);
+// Future<Info> fetchInfo(String plantName) async {
+//   final response = await http.get(url);
 
-  if (response.statusCode == 200) {
-    // If the server did return a 200 OK response,
-    // then parse the JSON.
-    print("Statusssss: 200");
-    print(response.body);
-    return Info.fromJson(jsonDecode(response.body), plantName);
-  } else {
-    // If the server did not return a 200 OK response,
-    // then throw an exception.
-    throw Exception('Failed to load Infos');
-  }
-}
+//   if (response.statusCode == 200) {
+//     // If the server did return a 200 OK response,
+//     // then parse the JSON.
+//     print("Statusssss: 200");
+
+//     print(response.body);
+//     return Info.fromJson(jsonDecode(response.body), plantName);
+//   } else {
+//     // If the server did not return a 200 OK response,
+//     // then throw an exception.
+//     throw Exception('Failed to load Infos');
+//   }
+// }
 
 _launchURL(String refURL) async {
   if (await canLaunch(refURL)) {
@@ -46,16 +46,33 @@ class InformationScreen extends StatefulWidget {
 }
 
 class _InformationScreenState extends State<InformationScreen> {
-  Future<Info> futureInfo;
+  // Future<Info> futureInfo;
 
-  void initState() {
-    super.initState();
-    futureInfo = fetchInfo(widget.plantName);
-  }
+  // void initState() {
+  //   super.initState();
+  //   futureInfo = fetchInfo(widget.plantName);
+  // }
 
   @override
   Widget build(BuildContext context) {
     print("Index of the Disease name is " + widget.selpredDis.toString());
+    //print(diseaseName);
+
+    // Disease's Info <START>
+    var diseaseinfos = diseaseInfos[widget.plantName][widget.selpredDis];
+    final String theDiseaseName = diseaseinfos["name"];
+    final String theDiseaseIntro = diseaseinfos["intro"];
+    final String theDiseaseSympnSign = diseaseinfos["symptomandsigns"];
+    final String theDiseaseCause1 = diseaseinfos["cause1"];
+    final String theDiseaseCause2 = diseaseinfos["cause2"];
+    final String theDiseaseCause3 = diseaseinfos["cause3"];
+    final String theDiseaseSolution1 = diseaseinfos["solution1"];
+    final String theDiseaseSolution2 = diseaseinfos["solution2"];
+    final String theDiseaseSolution3 = diseaseinfos["solution3"];
+    final String theDiseaseReference = diseaseinfos["reference"];
+    // Disease's Info <END>
+    print(theDiseaseName);
+    print("ddddddd" + widget.plantName);
     return Scaffold(
         backgroundColor: Theme.of(context).accentColor,
         appBar:
@@ -63,182 +80,156 @@ class _InformationScreenState extends State<InformationScreen> {
         body: Container(
           margin: EdgeInsets.fromLTRB(12.0, 0.0, 12.0, 0),
           child: SingleChildScrollView(
-            physics: BouncingScrollPhysics(),
-            child: FutureBuilder<Info>(
-              future: futureInfo,
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  return SingleChildScrollView(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        SizedBox(
-                          height: 12.0,
-                        ),
-                        Image.asset(
-                            "assets/images/diseasesPic/${widget.plantName.toLowerCase()}/${snapshot.data.diseaseInfos[widget.selpredDis].name.replaceAll(' ', '').toLowerCase()}.png",
-                            fit: BoxFit.cover),
-                        SizedBox(
-                          height: 12.0,
-                        ),
-                        Text(
-                          snapshot.data.diseaseInfos[widget.selpredDis].name,
-                          style: TextStyle(
-                              color: Theme.of(context).primaryColor,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 21.0),
-                        ),
-                        SizedBox(
-                          height: 12.0,
-                        ),
-                        Text(
-                          "Introduction",
-                          style: TextStyle(
-                              color: Theme.of(context).primaryColor,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16.0),
-                        ),
-                        SizedBox(
-                          height: 12.0,
-                        ),
-                        Text(
-                          snapshot.data.diseaseInfos[widget.selpredDis].intro,
-                          style:
-                              TextStyle(color: Theme.of(context).primaryColor),
-                        ),
-                        SizedBox(
-                          height: 12.0,
-                        ),
-                        Text(
-                          "Symptoms and Signs",
-                          style: TextStyle(
-                              color: Theme.of(context).primaryColor,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16.0),
-                        ),
-                        SizedBox(
-                          height: 12.0,
-                        ),
-                        Text(
-                          snapshot.data.diseaseInfos[widget.selpredDis]
-                              .symptomandsign,
-                          style:
-                              TextStyle(color: Theme.of(context).primaryColor),
-                        ),
-                        SizedBox(
-                          height: 12.0,
-                        ),
-                        Text(
-                          "Causes:",
-                          style: TextStyle(
-                              color: Theme.of(context).primaryColor,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16.0),
-                        ),
-                        SizedBox(
-                          height: 6.0,
-                        ),
-                        Text(
-                          snapshot.data.diseaseInfos[widget.selpredDis].cause1,
-                          style:
-                              TextStyle(color: Theme.of(context).primaryColor),
-                        ),
-                        SizedBox(
-                          height: 6.0,
-                        ),
-                        Text(
-                          snapshot.data.diseaseInfos[widget.selpredDis].cause2,
-                          style:
-                              TextStyle(color: Theme.of(context).primaryColor),
-                        ),
-                        SizedBox(
-                          height: 6.0,
-                        ),
-                        Text(
-                          snapshot.data.diseaseInfos[widget.selpredDis].cause3,
-                          style:
-                              TextStyle(color: Theme.of(context).primaryColor),
-                        ),
-                        SizedBox(
-                          height: 12.0,
-                        ),
-                        Text(
-                          "Solutions :",
-                          style: TextStyle(
-                              color: Theme.of(context).primaryColor,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16.0),
-                        ),
-                        SizedBox(
-                          height: 6.0,
-                        ),
-                        Text(
-                          snapshot
-                              .data.diseaseInfos[widget.selpredDis].solution1,
-                          style:
-                              TextStyle(color: Theme.of(context).primaryColor),
-                        ),
-                        SizedBox(
-                          height: 6.0,
-                        ),
-                        Text(
-                          snapshot
-                              .data.diseaseInfos[widget.selpredDis].solution2,
-                          style:
-                              TextStyle(color: Theme.of(context).primaryColor),
-                        ),
-                        SizedBox(
-                          height: 6.0,
-                        ),
-                        Text(
-                          snapshot
-                              .data.diseaseInfos[widget.selpredDis].solution3,
-                          style:
-                              TextStyle(color: Theme.of(context).primaryColor),
-                        ),
-                        SizedBox(
-                          height: 6.0,
-                        ),
-                        RaisedButton(
-                          elevation: 8.0,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                              side: BorderSide(
-                                  color: Theme.of(context).primaryColor)),
-                          textColor: Theme.of(context).primaryColor,
-                          color: Theme.of(context).accentColor,
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            "Read directly from source site",
-                          ),
-                          onPressed: () => _launchURL(snapshot.data
-                              .diseaseInfos[widget.selpredDis].referenceSite),
-                          // () {
-
-                          // _launchURL(snapshot
-                          //     .data
-                          //     .diseaseInfos[widget.selpredDis]
-                          //     .referenceSite);
-                          //   print("ssssssssssssssssssssss");
-
-                          //   _launchURL;
-                          // }
-                        )
-                      ],
+              physics: BouncingScrollPhysics(),
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    SizedBox(
+                      height: 12.0,
                     ),
-                  );
-                } else if (snapshot.hasError) {
-                  return Text("${snapshot.error}");
-                }
-                return Center(
-                  heightFactor: 10.0,
-                  child: CircularProgressIndicator(
-                    backgroundColor: Theme.of(context).primaryColor,
-                  ),
-                );
-              },
-            ),
-          ),
+                    Image.asset(
+                        "assets/images/diseasesPic/${widget.plantName.toLowerCase()}/${theDiseaseName.replaceAll(' ', '').toLowerCase()}.png",
+                        fit: BoxFit.cover),
+                    SizedBox(
+                      height: 12.0,
+                    ),
+                    Text(
+                      theDiseaseName,
+                      style: TextStyle(
+                          color: Theme.of(context).primaryColor,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 21.0),
+                    ),
+                    SizedBox(
+                      height: 12.0,
+                    ),
+                    Text(
+                      "Introduction",
+                      style: TextStyle(
+                          color: Theme.of(context).primaryColor,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16.0),
+                    ),
+                    SizedBox(
+                      height: 12.0,
+                    ),
+                    Text(
+                      theDiseaseIntro,
+                      style: TextStyle(color: Theme.of(context).primaryColor),
+                    ),
+                    SizedBox(
+                      height: 12.0,
+                    ),
+                    Text(
+                      "Symptoms and Signs",
+                      style: TextStyle(
+                          color: Theme.of(context).primaryColor,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16.0),
+                    ),
+                    SizedBox(
+                      height: 12.0,
+                    ),
+                    Text(
+                      theDiseaseSympnSign,
+                      style: TextStyle(color: Theme.of(context).primaryColor),
+                    ),
+                    SizedBox(
+                      height: 12.0,
+                    ),
+                    Text(
+                      "Causes:",
+                      style: TextStyle(
+                          color: Theme.of(context).primaryColor,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16.0),
+                    ),
+                    SizedBox(
+                      height: 6.0,
+                    ),
+                    Text(
+                      theDiseaseCause1,
+                      style: TextStyle(color: Theme.of(context).primaryColor),
+                    ),
+                    SizedBox(
+                      height: 6.0,
+                    ),
+                    Text(
+                      theDiseaseCause2,
+                      style: TextStyle(color: Theme.of(context).primaryColor),
+                    ),
+                    SizedBox(
+                      height: 6.0,
+                    ),
+                    Text(
+                      theDiseaseCause3,
+                      style: TextStyle(color: Theme.of(context).primaryColor),
+                    ),
+                    SizedBox(
+                      height: 12.0,
+                    ),
+                    Text(
+                      "Solutions :",
+                      style: TextStyle(
+                          color: Theme.of(context).primaryColor,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16.0),
+                    ),
+                    SizedBox(
+                      height: 6.0,
+                    ),
+                    Text(
+                      theDiseaseSolution1,
+                      style: TextStyle(color: Theme.of(context).primaryColor),
+                    ),
+                    SizedBox(
+                      height: 6.0,
+                    ),
+                    Text(
+                      theDiseaseSolution2,
+                      style: TextStyle(color: Theme.of(context).primaryColor),
+                    ),
+                    SizedBox(
+                      height: 6.0,
+                    ),
+                    Text(
+                      theDiseaseSolution3,
+                      style: TextStyle(color: Theme.of(context).primaryColor),
+                    ),
+                    SizedBox(
+                      height: 12.0,
+                    ),
+                    RaisedButton(
+                      elevation: 8.0,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                          side: BorderSide(
+                              color: Theme.of(context).primaryColor)),
+                      textColor: Theme.of(context).primaryColor,
+                      color: Theme.of(context).accentColor,
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        "Read directly from source site",
+                      ),
+                      onPressed: () => _launchURL(theDiseaseReference),
+                      // () {
+
+                      // _launchURL(snapshot
+                      //     .data
+                      //     .diseaseInfos[widget.selpredDis]
+                      //     .referenceSite);
+                      //   print("ssssssssssssssssssssss");
+
+                      //   _launchURL;
+                      // }
+                    ),
+                    SizedBox(
+                      height: 16.0,
+                    ),
+                  ],
+                ),
+              )),
         ));
   }
 }

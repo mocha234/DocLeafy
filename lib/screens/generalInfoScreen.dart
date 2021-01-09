@@ -7,7 +7,7 @@ import '../static/scaleTransition.dart';
 import 'infoScreen.dart';
 import 'constantsInfo.dart';
 
-final String url = jsonInfoApi;
+// final String url = jsonInfoApi;
 
 class GeneralInformationScreen extends StatefulWidget {
   final String plantName;
@@ -20,21 +20,21 @@ class GeneralInformationScreen extends StatefulWidget {
 class _GeneralInformationScreen extends State<GeneralInformationScreen> {
   List data = [];
 
-  final String url = jsonInfoApi;
-  fetchInfo() async {
-    var response = await http.get(url);
-    setState(() {
-      var converted = json.decode(response.body);
-      //data = converted['disease'];
-      data = converted[widget.plantName];
-      print("sssss");
-      print("Data length");
-      print(data.length);
-      print(widget.plantName);
-      //print(data);
-      //print(data[0]["solution"]);
-    });
-  }
+  // final String url = jsonInfoApi;
+  // fetchInfo() async {
+  //   var response = await http.get(url);
+  //   setState(() {
+  //     var converted = json.decode(response.body);
+  //     //data = converted['disease'];
+  //     data = converted[widget.plantName];
+  //     print("sssss");
+  //     print("Data length");
+  //     print(data.length);
+  //     print(widget.plantName);
+  //     //print(data);
+  //     //print(data[0]["solution"]);
+  //   });
+  // }
 
   void tapthis(int index) {
     Navigator.push(
@@ -43,13 +43,13 @@ class _GeneralInformationScreen extends State<GeneralInformationScreen> {
             page: InformationScreen(
           selpredDis: index,
           plantName: widget.plantName,
-          diseaseName: data[index]["name"],
+          diseaseName: diseaseInfos[widget.plantName][index]["name"],
         )));
   }
 
   void initState() {
     super.initState();
-    fetchInfo();
+    //fetchInfo();
   }
 
   @override
@@ -59,8 +59,15 @@ class _GeneralInformationScreen extends State<GeneralInformationScreen> {
             context: context, appBarName: "Other Diseases' Information"),
         body: ListView.builder(
           physics: BouncingScrollPhysics(),
-          itemCount: data.length,
+          itemCount: diseaseInfos[widget.plantName].length,
           itemBuilder: (BuildContext context, int index) {
+            // Disease's Info <START>
+            // var diseaseinfos = diseaseInfos[widget.plantName][index]["name"];
+
+            // String theDiseaseName = diseaseinfos;
+            // String theDiseaseIntro = diseaseinfos["intro"];
+
+            // Disease's Info <END>
             return GestureDetector(
               onTap: () {
                 tapthis(index);
@@ -93,13 +100,18 @@ class _GeneralInformationScreen extends State<GeneralInformationScreen> {
                             maxHeight: 64,
                           ),
                           child: Image.asset(
-                              "assets/images/diseasesPic/${widget.plantName.toLowerCase()}/${data[index]["name"].replaceAll(' ', '').toLowerCase()}.png",
+                              "assets/images/diseasesPic/${widget.plantName.toLowerCase()}/${diseaseInfos[widget.plantName][index]["name"].replaceAll(' ', '').toLowerCase()}.png",
                               fit: BoxFit.cover),
                         ),
                         title: new Text(
-                          data[index]['name'],
+                          diseaseInfos[widget.plantName][index]["name"],
+                          // data[index]['name'],
                         ),
-                        subtitle: new Text("\n" + data[index]['intro']),
+                        subtitle: Text(
+                          "\n" +
+                              // data[index]['intro']
+                              diseaseInfos[widget.plantName][index]["intro"],
+                        ),
                       ),
                     ),
                   ),
