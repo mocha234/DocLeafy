@@ -27,11 +27,12 @@ class _GeneralInformationScreen extends State<GeneralInformationScreen> {
       var converted = json.decode(response.body);
       //data = converted['disease'];
       data = converted[widget.plantName];
-      print(data);
-      print(data[0]["name"]);
-      print(data[0]["solution"]);
+      print("sssss");
       print("Data length");
       print(data.length);
+      print(widget.plantName);
+      //print(data);
+      //print(data[0]["solution"]);
     });
   }
 
@@ -41,6 +42,8 @@ class _GeneralInformationScreen extends State<GeneralInformationScreen> {
         ScaleRoute(
             page: InformationScreen(
           selpredDis: index,
+          plantName: widget.plantName,
+          diseaseName: data[index]["name"],
         )));
   }
 
@@ -89,15 +92,14 @@ class _GeneralInformationScreen extends State<GeneralInformationScreen> {
                             maxWidth: 64,
                             maxHeight: 64,
                           ),
-                          child: Image.network(
-                              'https://picsum.photos/250?image=$index',
+                          child: Image.asset(
+                              "assets/images/diseasesPic/${widget.plantName.toLowerCase()}/${data[index]["name"].replaceAll(' ', '').toLowerCase()}.png",
                               fit: BoxFit.cover),
                         ),
                         title: new Text(
                           data[index]['name'],
                         ),
-                        subtitle: new Text(
-                            "\nSome snapshot info " + data[index]['intro']),
+                        subtitle: new Text("\n" + data[index]['intro']),
                       ),
                     ),
                   ),

@@ -48,9 +48,15 @@ const Map<int, Map<String, String>> projectAPI = {
   }
 };
 
-const String jsonInfoApi = "https://jsonkeeper.com/b/LOHJ";
+const String jsonInfoApi = "https://jsonkeeper.com/b/UDHO";
 
 const Map<int, Map<String, String>> plantName = {
-  0: {"name": "Tomato", "imagePath": "assets/images/tomatoIcon.png"},
-  1: {"name": "Strawberry", "imagePath": "assets/images/strawberryIcon.png"}
+  0: {
+    "name": "Tomato",
+    "imagePath": "assets/images/catergoriesScreen/tomatoIcon.png"
+  },
+  1: {
+    "name": "Strawberry",
+    "imagePath": "assets/images/catergoriesScreen/strawberryIcon.png"
+  }
 };

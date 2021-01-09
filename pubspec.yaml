@@ -31,6 +31,7 @@ dependencies:
   image_picker: ^0.6.7+17
   rive: ^0.6.4
   animated_splash_screen: ^1.0.1+2
+  url_launcher: ^5.7.10
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -55,6 +56,11 @@ flutter:
     - assets/animation/howtotakepic.riv
     - assets/images/DocLeafy_Logo.png
     - assets/images/DocLeafy_Logo_banner.png
+    - assets/images/catergoriesScreen/tomatoIcon.png
+    - assets/images/catergoriesScreen/strawberryIcon.png
+    - assets/images/diseasesPic/tomato/
+    # - assets/images/diseasesPic/strawberry/
+
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

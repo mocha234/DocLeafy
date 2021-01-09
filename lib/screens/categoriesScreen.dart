@@ -7,6 +7,7 @@ import '../screens/constantsInfo.dart';
 import '../static/appBars.dart';
 import '../static/scaleTransition.dart';
 import '../screens/takePicScreen.dart';
+import './constantsInfo.dart';
 
 class CategoriesScreen extends StatefulWidget {
   final CameraDescription camera;
@@ -77,8 +78,6 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
 
   @override
   Widget build(BuildContext context) {
-
-    
     return Scaffold(
       backgroundColor: Theme.of(context).accentColor,
       appBar: appBar(context: context, appBarName: 'Plant Disease Identifier'),
@@ -117,8 +116,12 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     //Change Image, use map to insert filepath and pass to assetimage belwo
-                    //Image.asset(categoriesMap[index]["imagePath"]),
-                    Icon(Icons.ac_unit),
+
+                    SizedBox(
+                        height: 100.0,
+                        width: 100.0,
+                        child: Image.asset(plantName[index]["imagePath"])),
+                    //Icon(Icons.ac_unit),
                     Text(plantName[index]["name"]),
                   ],
                 ),

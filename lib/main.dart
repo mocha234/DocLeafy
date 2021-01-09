@@ -14,6 +14,7 @@ Future<void> main() async {
 
   runApp(
     MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primaryColor: Color(0xFF486942), //Hunter Green
         accentColor: Color(0xFFEFEFE8), //Alabaster
