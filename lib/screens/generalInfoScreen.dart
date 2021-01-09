@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 //import './myWebView.dart';
 import '../static/appBars.dart';
-import 'dart:convert';
-import 'package:http/http.dart' as http;
+// import 'dart:convert';
+// import 'package:http/http.dart' as http;
 import '../static/scaleTransition.dart';
 import 'infoScreen.dart';
 import 'constantsInfo.dart';
