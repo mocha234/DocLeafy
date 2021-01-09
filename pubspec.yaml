@@ -32,6 +32,7 @@ dependencies:
   rive: ^0.6.4
   animated_splash_screen: ^1.0.1+2
   url_launcher: ^5.7.10
+  dio: ^3.0.10
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

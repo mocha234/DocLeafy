@@ -144,38 +144,7 @@ class _TakePictureScreenState extends State<TakePictureScreen> {
           if (snapshot.connectionState == ConnectionState.done) {
             // If the Future is complete, display the preview.
             return CameraPreview(_controller);
-///////////////////////////////////////////////////////////////////////////////////
 
-            // return new Stack(
-            //   alignment: FractionalOffset.center,
-            //   children: <Widget>[
-            //     new Positioned.fill(
-            //       child: new AspectRatio(
-            //           aspectRatio: _controller.value.aspectRatio,
-            //           child: new CameraPreview(_controller)),
-            //     ),
-            //     new Positioned.fill(
-            //       child: Center(
-            //         child: Opacity(
-            //           opacity: _visible ? 1.0 : 0.0,
-            //           child: GestureDetector(
-            //             onTap: () {
-            //               setState(() {
-            //                 _visible = !_visible;
-            //               });
-            //             },
-            //             child: Image.network(
-            //               'https://www.clipartmax.com/png/middle/50-501160_leaves-outline-clip-art-clip-art.png',
-            //               fit: BoxFit.fill,
-            //             ),
-            //           ),
-            //         ),
-            //       ),
-            //     ),
-            //   ],
-            // );
-
-/////////////////////////////////////////////////////////////////////////////////////
           } else {
             // Otherwise, display a loading indicator.
             return Center(child: CircularProgressIndicator());

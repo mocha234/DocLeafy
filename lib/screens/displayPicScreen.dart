@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:tomatodiseasechecker/screens/generalInfoScreen.dart';
-import 'dart:convert';
-import "dart:io" as Io;
+import 'package:http_parser/http_parser.dart';
 
 import "dart:io";
 import '../models/predictionModel.dart';
@@ -11,28 +10,70 @@ import 'infoScreen.dart';
 import '../static/appBars.dart';
 import './constantsInfo.dart';
 
-Future<Predicted> fetchPredictions(imagePath2File, int categoryIndex) async {
-  final bytes = Io.File(imagePath2File).readAsBytesSync();
-  final String endpointAPI = projectAPI[categoryIndex]["APIEndpoint"];
-  final String predictionKey = projectAPI[categoryIndex]["Prediction-Key"];
-  final String contentType = projectAPI[categoryIndex]["Content-Type"];
+fetchInfo(String filename, String url) async {
+  print("fetchInfo");
+  var postUri = Uri.parse(url);
+  var request = http.MultipartRequest("POST", postUri);
+  final file = await http.MultipartFile.fromPath('uploaded_image', filename,
+      contentType: MediaType('image', 'jpg'));
 
-  var uri = Uri.parse(endpointAPI);
-  var request = new http.Request("POST", uri)
-    ..headers['Prediction-Key'] = predictionKey
-    ..headers['Content-Type'] = contentType
-    ..bodyBytes = bytes;
+  request.files.add(file);
+  print(request.files);
 
-  http.Response response = await http.Response.fromStream(await request.send());
-  print(request);
-  print("Result: ${response.statusCode}");
-  print(response.statusCode);
-  print(response.body);
-  print("sssswfgges");
-  print("0ssssss");
+  request.send().then((result) {
+    http.Response.fromStream(result).then((response) {
+      if (response.statusCode == 200) {
+        print("Uploaded! ");
+        print('response.body ' + response.body);
+      }
 
-  return Predicted.fromJson(jsonDecode(response.body));
+      return response.body;
+    });
+    //request.send().then((response) {
+    // print("ssssss");
+    // print(response.statusCode);
+    // print(response.body);
+    // print(response.stream.bytesToString());
+
+    // if (response.statusCode == 200) print("Uploaded!");
+  });
+  // try {
+  //   http.StreamedResponse response = await request.send();
+  //   var responseByteArray = await response.stream.toBytes();
+  //   print(responseByteArray);
+  //   print(response);
+  // } catch (e) {
+  //   print(e);
+  //   return null;
+  // }
+
+  // request.send().then((response) {
+  //   if (response.statusCode == 200) print("Uploaded!");
+  // });
 }
+
+// Future<Predicted> fetchPredictions(imagePath2File, int categoryIndex) async {
+//   final bytes = Io.File(imagePath2File).readAsBytesSync();
+//   final String endpointAPI = projectAPI[categoryIndex]["APIEndpoint"];
+//   final String predictionKey = projectAPI[categoryIndex]["Prediction-Key"];
+//   final String contentType = projectAPI[categoryIndex]["Content-Type"];
+
+//   var uri = Uri.parse(endpointAPI);
+//   var request = new http.Request("POST", uri)
+//     ..headers['Prediction-Key'] = predictionKey
+//     ..headers['Content-Type'] = contentType
+//     ..bodyBytes = bytes;
+
+//   http.Response response = await http.Response.fromStream(await request.send());
+//   print(request);
+//   print("Result: ${response.statusCode}");
+//   print(response.statusCode);
+//   print(response.body);
+//   print("sssswfgges");
+//   print("0ssssss");
+
+//   return Predicted.fromJson(jsonDecode(response.body));
+// }
 
 class DisplayPictureScreen extends StatefulWidget {
   final String imagePath;
@@ -60,8 +101,9 @@ class _DisplayPictureScreenState extends State<DisplayPictureScreen> {
     super.initState();
     print("Temp Image Path: " + widget.imagePath);
     print("categoryIndex: " + widget.categoryIndex.toString());
-    futurePredictions1 =
-        fetchPredictions(widget.imagePath, widget.categoryIndex);
+    // futurePredictions1 =
+    //     fetchPredictions(widget.imagePath, widget.categoryIndex);
+    //fetchInfo(widget.imagePath, "https://20.83.176.144:5000/predict-tomato");
   }
 
   @override
@@ -75,18 +117,23 @@ class _DisplayPictureScreenState extends State<DisplayPictureScreen> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Image.file(File(widget.imagePath)),
+          // Center(
+          //   child: FutureBuilder<Predicted>(
+          //     future: futurePredictions1,
           Center(
-            child: FutureBuilder<Predicted>(
-              future: futurePredictions1,
+            child: FutureBuilder<dynamic>(
+              future: fetchInfo(
+                  widget.imagePath, "http://20.83.176.144:5000/predict-tomato"),
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
-                  print("This is printed.");
-                  print(snapshot.data.toString());
-                  print(snapshot.data.predictions);
-                  print(snapshot.data.predictions[0].tagName);
+                  print("snapshot has data");
+                  // print("This is printed.");
+                  // print(snapshot.data.toString());
+                  // print(snapshot.data.predictions);
+                  // print(snapshot.data.predictions[0].tagName);
 
-                  textDisplay = snapshot.data.predictions[0].tagName.toString();
-                  // Index 0 has the highest probabilty
+                  // textDisplay = snapshot.data.predictions[0].tagName.toString();
+                  // // Index 0 has the highest probabilty
 
                   return Column(
                     children: [

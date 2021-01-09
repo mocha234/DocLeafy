@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:tomatodiseasechecker/screens/displayPicScreen.dart';
-
 import '../screens/constantsInfo.dart';
 import '../static/appBars.dart';
 import '../static/scaleTransition.dart';
@@ -21,6 +20,35 @@ class CategoriesScreen extends StatefulWidget {
 }
 
 class _CategoriesScreenState extends State<CategoriesScreen> {
+  // void getHttp() async {
+  //   try {
+  //     Response response =
+  //         await Dio().post("https://20.83.176.144:5000/predict-tomato");
+  //     print(response);
+  //   } catch (e) {
+  //     print(e);
+  //   }
+  // }
+
+  // fetchInfo() async {
+  //   http.Response response =
+  //       await http.get("https://20.83.176.144:5000/predict-tomato",
+  //       headers: );
+  //   print(response.body);
+
+  //   setState(() {
+  //     var converted = json.decode(response.body);
+  //     print(converted);
+  //     //data = converted['disease'];
+  //   });
+  // }
+
+  @override
+  void initState() {
+    super.initState();
+    //getHttp();
+  }
+
   String _imagePath;
   final picker = ImagePicker();
 
@@ -95,6 +123,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
               onTap: () {
                 print(index);
                 _showPicker(context, index);
+                //getHttp();
 
                 // Navigator.push(
                 //     context,
