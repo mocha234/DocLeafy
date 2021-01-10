@@ -1,4 +1,4 @@
-package com.teamalam.tomatodiseasechecker
+package com.teamalam.docleafy
 
 import io.flutter.embedding.android.FlutterActivity
 

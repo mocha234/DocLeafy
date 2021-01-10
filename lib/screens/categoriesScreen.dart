@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:tomatodiseasechecker/screens/displayPicScreen.dart';
+import 'package:docleafy/screens/displayPicScreen.dart';
 import '../screens/constantsInfo.dart';
 import '../static/appBars.dart';
 import '../static/scaleTransition.dart';

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:tomatodiseasechecker/screens/generalInfoScreen.dart';
+import 'package:docleafy/screens/generalInfoScreen.dart';
 //import 'package:http_parser/http_parser.dart';
 import 'dart:convert';
 
