@@ -1,5 +1,13 @@
 import 'package:flutter/material.dart';
 
+bool validateStructure(String value) {
+  String pattern =
+      r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$';
+  RegExp regExp = new RegExp(pattern);
+  print(regExp.hasMatch(value));
+  return regExp.hasMatch(value);
+}
+
 class RegisterPage extends StatefulWidget {
   RegisterPage({Key key}) : super(key: key);
 
@@ -8,6 +16,103 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+  final TextEditingController _username = TextEditingController();
+  final TextEditingController _pass = TextEditingController();
+  final TextEditingController _confirmPass = TextEditingController();
+  final TextEditingController _email = TextEditingController();
+
+  bool validatePassword(
+      String cfnpwd, String pwd, String usernameCheck, String emailCheck) {
+    Pattern pattern =
+        r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$';
+    RegExp regex = new RegExp(pattern);
+    Pattern emailPattern = r'^(?=.*?@.)$';
+    RegExp emailRegex = new RegExp(emailPattern);
+    print(cfnpwd);
+    if (usernameCheck.isEmpty) {
+      showDialog(
+          //barrierDismissible: false,
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              content: Text(
+                "Please enter a Username!",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Theme.of(context).primaryColor,
+                ),
+              ),
+            );
+          });
+      return false;
+    } else if (!emailRegex.hasMatch(emailCheck)) {
+      showDialog(
+          //barrierDismissible: false,
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              content: Text(
+                "Please enter a valid E-Mail address!",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Theme.of(context).primaryColor,
+                ),
+              ),
+            );
+          });
+      return false;
+    } else if (cfnpwd.isEmpty) {
+      showDialog(
+          //barrierDismissible: false,
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              content: Text(
+                "Please enter password!",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Theme.of(context).primaryColor,
+                ),
+              ),
+            );
+          });
+      return false;
+    } else if (!regex.hasMatch(cfnpwd)) {
+      showDialog(
+          //barrierDismissible: false,
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              content: Text(
+                "Password should contain at least one upper case, one lower case, one digit(0-9), one Special character(\$, #, @, !,%,^,&,*,(,) )",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Theme.of(context).primaryColor,
+                ),
+              ),
+            );
+          });
+      return false;
+    } else if (cfnpwd != pwd) {
+      showDialog(
+          //barrierDismissible: false,
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              content: Text(
+                "Password and Confirm Password are different!",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Theme.of(context).primaryColor,
+                ),
+              ),
+            );
+          });
+      return false;
+    } else
+      return true;
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -40,6 +145,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     height: 60,
                     width: MediaQuery.of(context).size.width,
                     child: TextField(
+                      controller: _username,
                       style: TextStyle(
                         color: Colors.black,
                       ),
@@ -69,6 +175,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     height: 60,
                     width: MediaQuery.of(context).size.width,
                     child: TextField(
+                      controller: _email,
                       style: TextStyle(
                         color: Colors.black,
                       ),
@@ -82,7 +189,7 @@ class _RegisterPageState extends State<RegisterPage> {
                               color: Theme.of(context).primaryColor,
                               width: 5.0),
                         ),
-                        hintText: 'some_email@email.com',
+                        hintText: 'your_email@email.com',
                         fillColor: Theme.of(context).primaryColor,
                         labelText: 'Email',
                         labelStyle: TextStyle(
@@ -97,7 +204,8 @@ class _RegisterPageState extends State<RegisterPage> {
                   Container(
                     height: 60,
                     width: MediaQuery.of(context).size.width,
-                    child: TextField(
+                    child: TextFormField(
+                      controller: _pass,
                       style: TextStyle(
                         color: Colors.black,
                       ),
@@ -126,7 +234,8 @@ class _RegisterPageState extends State<RegisterPage> {
                   Container(
                     height: 60,
                     width: MediaQuery.of(context).size.width,
-                    child: TextField(
+                    child: TextFormField(
+                      controller: _confirmPass,
                       style: TextStyle(
                         color: Colors.black,
                       ),
@@ -152,7 +261,13 @@ class _RegisterPageState extends State<RegisterPage> {
                   FlatButton(
                     //splashColor: Colors.transparent,
                     highlightColor: Colors.transparent,
-                    onPressed: () {},
+                    onPressed: () {
+                      validatePassword(_confirmPass.text, _pass.text,
+                          _username.text, _email.text);
+
+                      // print(validatePassword(_confirmPass.text, _pass.text,
+                      //     _username.text, _email.text));
+                    },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [

@@ -6,3 +6,5 @@
   -> APIEndpoint
   -> jsonInfoApi
 - reference
+  -passowrd check
+- laucnch oicon cannot use alpha, just replace the directory
