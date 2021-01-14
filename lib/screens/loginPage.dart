@@ -1,13 +1,50 @@
+import 'package:docleafy/models/loginModel.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'package:camera/camera.dart';
+import 'categoriesScreen.dart';
+
+Future<String> loginNow({String username, String password}) async {
+  print("loginNow");
+  var postUri = Uri.parse("http://20.83.176.144:5000/login");
+  var request = http.MultipartRequest("POST", postUri);
+  request.fields['username'] = username;
+  request.fields['password'] = password;
+  print("-----------");
+  print(username);
+  print(password);
+  print("-----------");
+  print(request);
+  print("sent");
+  http.Response response = await http.Response.fromStream(await request.send());
+  print("Result: ${response.statusCode}");
+  print(response.statusCode);
+  print(response.body);
+  var ff = jsonDecode(response.body);
+  print(ff);
+  print(ff["message"]);
+  print("fffff");
+  return ff["message"];
+  //return SignIn.fromJson(jsonDecode(response.body));
+}
 
 class LoginPage extends StatefulWidget {
-  LoginPage({Key key}) : super(key: key);
+
+  final CameraDescription camera;
+  LoginPage({Key key,
+  @required this.camera,
+  }) : super(key: key);
 
   @override
   _LoginPageState createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final TextEditingController loginUsername = TextEditingController();
+  final TextEditingController loginPassword = TextEditingController();
+  Future<SignIn> loginInStat;
+  String successOrFail;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -37,6 +74,7 @@ class _LoginPageState extends State<LoginPage> {
                     height: 60,
                     width: MediaQuery.of(context).size.width,
                     child: TextField(
+                      controller: loginUsername,
                       style: TextStyle(
                         color: Colors.black,
                       ),
@@ -66,6 +104,7 @@ class _LoginPageState extends State<LoginPage> {
                     height: 60,
                     width: MediaQuery.of(context).size.width,
                     child: TextField(
+                      controller: loginPassword,
                       style: TextStyle(
                         color: Colors.black,
                       ),
@@ -91,7 +130,40 @@ class _LoginPageState extends State<LoginPage> {
                   FlatButton(
                     //splashColor: Colors.transparent,
                     highlightColor: Colors.transparent,
-                    onPressed: () {},
+                    onPressed: () async {
+                      successOrFail = await loginNow(
+                        username: loginUsername.text,
+                        password: loginPassword.text,
+                      );
+                      print("Success or Fail: " + successOrFail);
+                      if (successOrFail == "success") {
+                        print("Success!");
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => CategoriesScreen(
+                               camera: widget.camera,
+                            ),
+                          ),
+                        );
+                      } else {
+                        print("Invalid Email or Password!");
+                        showDialog(
+                            //barrierDismissible: false,
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                content: Text(
+                                  "Invalid Email or Password. Please try again!",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: Theme.of(context).primaryColor,
+                                  ),
+                                ),
+                              );
+                            });
+                      }
+                    },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [

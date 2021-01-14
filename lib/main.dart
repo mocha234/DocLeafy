@@ -22,9 +22,10 @@ Future<void> main() async {
         accentColor: Color(0xFFEFEFE8), //Alabaster
         fontFamily: GoogleFonts.ubuntu().fontFamily,
       ),
-      home:
-          // LoginPage(),
-          RegisterPage(),
+      home: LoginPage(
+        camera: firstCamera,
+      ),
+      //RegisterPage(),
 //
 //
 //

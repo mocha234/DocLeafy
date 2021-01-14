@@ -16,16 +16,8 @@ const Map<int, Map<String, int>> diseaseIndexMapping = {
     "Healthy": 9
   },
   1: {
-    "Bacterial Spot": 0,
-    "Early Blight": 1,
-    "Late Blight": 2,
-    "Leaf Mold": 3,
-    "Mosaic Virus": 4,
-    "Septoria Leaf Spot": 5,
-    "Spider Mites": 6,
-    "Target Spot": 7,
-    "Yellow Leaf Curl Virus": 8,
-    "Healthy": 9
+    "Leaf Scorch": 0,
+    "Healthy": 1
   }
 };
 
@@ -59,7 +51,7 @@ const Map<int, Map<String, String>> plantName = {
   1: {
     "name": "Strawberry",
     "imagePath": "assets/images/catergoriesScreen/strawberryIcon.png",
-    "apiEndPoint": "http://20.83.176.144:5000/predict-tomato"
+    "apiEndPoint": "http://20.83.176.144:5000/predict-strawberry"
   }
 };
 
@@ -264,7 +256,7 @@ const Map<String, List<Map<String, String>>> diseaseInfos = {
   ],
   "Strawberry": [
     {
-      "name": "Bacterial Spot",
+      "name": "Leaf Scorch",
       "intro": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       "symptomandsigns": "",
       "cause1": " ",
