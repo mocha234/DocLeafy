@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:docleafy/screens/displayPicScreen.dart';
+import 'package:docleafy/screens/profileScreen.dart';
 import '../screens/constantsInfo.dart';
-import '../static/appBars.dart';
+
 import '../static/scaleTransition.dart';
 import '../screens/takePicScreen.dart';
 import './constantsInfo.dart';
@@ -106,57 +107,84 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Theme.of(context).accentColor,
-      appBar: appBar(context: context, appBarName: 'Plant Disease Identifier'),
-      body: Container(
-        child: GridView.builder(
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            crossAxisSpacing: 0.0,
-            mainAxisSpacing: 3.0,
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: Scaffold(
+        backgroundColor: Theme.of(context).accentColor,
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          centerTitle: true,
+          title: Text(
+            "DocLeafy",
+            style: TextStyle(color: Theme.of(context).accentColor
+                // Colors.white
+                ),
           ),
-          physics: BouncingScrollPhysics(),
-          itemCount: plantName.length,
-          itemBuilder: (BuildContext context, int index) {
-            return GestureDetector(
-              onTap: () {
-                print(index);
-                _showPicker(context, index);
-                //getHttp();
+          backgroundColor: Theme.of(context).primaryColor,
+          actions: [
+            IconButton(
+                icon: Icon(Icons.person_outline),
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      ScaleRoute(
+                          page: ProfileScreen(
+                        camera: widget.camera,
+                      )));
+                }
+                //_appInfo,
+                )
+          ],
+        ),
+        body: Container(
+          child: GridView.builder(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              crossAxisSpacing: 0.0,
+              mainAxisSpacing: 3.0,
+            ),
+            physics: BouncingScrollPhysics(),
+            itemCount: plantName.length,
+            itemBuilder: (BuildContext context, int index) {
+              return GestureDetector(
+                onTap: () {
+                  print(index);
+                  _showPicker(context, index);
+                  //getHttp();
 
-                // Navigator.push(
-                //     context,
-                //     ScaleRoute(
-                //         page: TakePictureScreen(
-                //       camera: widget.camera,
-                //       categoryIndex: index,
-                //     )));
-              },
-              child: Container(
-                margin: EdgeInsets.fromLTRB(4.0, 7.0, 4.0, 0.0),
-                padding: EdgeInsets.all(6.0),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(9.0)),
-                  border: Border.all(
-                      color: Theme.of(context).primaryColor, width: 4.0),
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    //Change Image, use map to insert filepath and pass to assetimage belwo
+                  // Navigator.push(
+                  //     context,
+                  //     ScaleRoute(
+                  //         page: TakePictureScreen(
+                  //       camera: widget.camera,
+                  //       categoryIndex: index,
+                  //     )));
+                },
+                child: Container(
+                  margin: EdgeInsets.fromLTRB(4.0, 7.0, 4.0, 0.0),
+                  padding: EdgeInsets.all(6.0),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(9.0)),
+                    border: Border.all(
+                        color: Theme.of(context).primaryColor, width: 4.0),
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      //Change Image, use map to insert filepath and pass to assetimage belwo
 
-                    SizedBox(
-                        height: 100.0,
-                        width: 100.0,
-                        child: Image.asset(plantName[index]["imagePath"])),
-                    //Icon(Icons.ac_unit),
-                    Text(plantName[index]["name"]),
-                  ],
+                      SizedBox(
+                          height: 100.0,
+                          width: 100.0,
+                          child: Image.asset(plantName[index]["imagePath"])),
+                      //Icon(Icons.ac_unit),
+                      Text(plantName[index]["name"]),
+                    ],
+                  ),
                 ),
-              ),
-            );
-          },
+              );
+            },
+          ),
         ),
       ),
     );

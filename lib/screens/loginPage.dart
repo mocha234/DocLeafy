@@ -1,4 +1,5 @@
-import 'package:docleafy/models/loginModel.dart';
+// import 'package:docleafy/models/loginModel.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -30,10 +31,10 @@ Future<String> loginNow({String username, String password}) async {
 }
 
 class LoginPage extends StatefulWidget {
-
   final CameraDescription camera;
-  LoginPage({Key key,
-  @required this.camera,
+  LoginPage({
+    Key key,
+    @required this.camera,
   }) : super(key: key);
 
   @override
@@ -43,10 +44,40 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final TextEditingController loginUsername = TextEditingController();
   final TextEditingController loginPassword = TextEditingController();
-  Future<SignIn> loginInStat;
+  //Future<SignIn> loginInStat;
   String successOrFail;
+  Future<bool> checkLoginStat;
+
+  @override
+  void initState() {
+    super.initState();
+    checkLoginStat = _checkLoginStatus();
+  }
+
+  Future<bool> _checkLoginStatus() async {
+    final prefs = await SharedPreferences.getInstance();
+    final loggedIn = prefs.getBool('loggedIn');
+    print("okkk");
+    print(loggedIn);
+    return loggedIn;
+  }
+
+  Future<void> _userSignIn() async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setBool('loggedIn', true);
+    final ifLoggedIn = await _checkLoginStatus();
+    print("login?");
+    print(ifLoggedIn);
+    // if (ifLoggedIn == false) {
+    //   setState(() =>
+    //   prefs.setBool('loggedIn', true));
+    // }
+  }
+
   @override
   Widget build(BuildContext context) {
+    //print("boll");
+    //print(checkLoginStat);
     return SafeArea(
       child: Scaffold(
         backgroundColor: Theme.of(context).accentColor,
@@ -88,9 +119,11 @@ class _LoginPageState extends State<LoginPage> {
                               color: Theme.of(context).primaryColor,
                               width: 5.0),
                         ),
-                        hintText: 'your_email@email.com',
+                        //hintText: 'your_email@email.com',
+                        hintText: 'your username is...',
                         fillColor: Theme.of(context).primaryColor,
-                        labelText: 'Email',
+                        //labelText: 'Email',
+                        labelText: 'Username',
                         labelStyle: TextStyle(
                           color: Theme.of(context).primaryColor,
                         ),
@@ -138,11 +171,12 @@ class _LoginPageState extends State<LoginPage> {
                       print("Success or Fail: " + successOrFail);
                       if (successOrFail == "success") {
                         print("Success!");
+                        _userSignIn();
                         Navigator.push(
                           context,
                           MaterialPageRoute(
                             builder: (context) => CategoriesScreen(
-                               camera: widget.camera,
+                              camera: widget.camera,
                             ),
                           ),
                         );

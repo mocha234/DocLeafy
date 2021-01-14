@@ -22,12 +22,7 @@ class TakePictureScreen extends StatefulWidget {
 }
 
 class _TakePictureScreenState extends State<TakePictureScreen> {
-  // void _togglePlay() {
-  //   setState(
-  //       () => _animationController.isActive = !_animationController.isActive);
-  // }
 
-  /// Tracks if the animation is playing by whether controller is running.
   bool get isPlaying => _animationController?.isActive ?? false;
   Artboard _riveArtboard;
   RiveAnimationController _animationController;
@@ -35,7 +30,7 @@ class _TakePictureScreenState extends State<TakePictureScreen> {
   CameraController _controller;
   Future<void> _initializeControllerFuture;
   Future<Predicted> futurePredictions;
-  // bool _visible = true;
+
   String newPath;
 
   void _appInfo() {
@@ -76,15 +71,13 @@ class _TakePictureScreenState extends State<TakePictureScreen> {
   @override
   void initState() {
     super.initState();
-    // To display the current output from the Camera,
-    // create a CameraController.
-    //futurePredictions = fetchPredictions();
+
     _controller = CameraController(
-      // Get a specific camera from the list of available cameras.
       widget.camera,
-      // Define the resolution to use.
       ResolutionPreset.medium,
     );
+
+    //new cam
 
     // Next, initialize the controller. This returns a Future.
     _initializeControllerFuture = _controller.initialize();
@@ -144,7 +137,6 @@ class _TakePictureScreenState extends State<TakePictureScreen> {
           if (snapshot.connectionState == ConnectionState.done) {
             // If the Future is complete, display the preview.
             return CameraPreview(_controller);
-
           } else {
             // Otherwise, display a loading indicator.
             return Center(child: CircularProgressIndicator());
