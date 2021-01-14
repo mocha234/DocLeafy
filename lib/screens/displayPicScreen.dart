@@ -122,109 +122,113 @@ class _DisplayPictureScreenState extends State<DisplayPictureScreen> {
       backgroundColor: Theme.of(context).accentColor,
       appBar:
           standardAppBar(context: context, appBarName: "Disease Identified"),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Image.file(File(widget.imagePath)),
-          // Center(
-          //   child: FutureBuilder<Predicted>(
-          //     future: futurePredictions1,
-          Center(
-            child: FutureBuilder<Predicted>(
-              future: fetchInfo(widget.imagePath,
-                  plantName[widget.categoryIndex]["apiEndPoint"]),
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  print("snapshot has data");
-                  print("This is printed.");
-                  // print(snapshot.data.toString());
-                  // print(snapshot.data.predictions);
-                  print(snapshot.data.outPut.tagName);
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Image.file(File(widget.imagePath)),
+            // Center(
+            //   child: FutureBuilder<Predicted>(
+            //     future: futurePredictions1,
+            Center(
+              child: FutureBuilder<Predicted>(
+                future: fetchInfo(widget.imagePath,
+                    plantName[widget.categoryIndex]["apiEndPoint"]),
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    print("snapshot has data");
+                    print("This is printed.");
+                    // print(snapshot.data.toString());
+                    // print(snapshot.data.predictions);
+                    print(snapshot.data.outPut.tagName);
 
-                  textDisplay = snapshot.data.outPut.tagName.toString();
-                  // // Index 0 has the highest probabilty
+                    textDisplay = snapshot.data.outPut.tagName.toString();
+                    // // Index 0 has the highest probabilty
 
-                  return Column(
-                    children: [
-                      Text(
-                        "The plan disease identified most likely to be: ",
-                        style: TextStyle(color: Theme.of(context).primaryColor),
-                      ),
-                      SizedBox(
-                        height: 6.0,
-                      ),
-                      Text(
-                        textDisplay,
-                        style: TextStyle(color: Theme.of(context).primaryColor),
-                      ),
-                    ],
+                    return Column(
+                      children: [
+                        Text(
+                          "The plan disease identified most likely to be: ",
+                          style:
+                              TextStyle(color: Theme.of(context).primaryColor),
+                        ),
+                        SizedBox(
+                          height: 6.0,
+                        ),
+                        Text(
+                          textDisplay,
+                          style:
+                              TextStyle(color: Theme.of(context).primaryColor),
+                        ),
+                      ],
+                    );
+                  } else if (snapshot.hasError) {
+                    return Text("Error: ${snapshot.error}");
+                  }
+
+                  // By default, show a loading spinner.
+                  return CircularProgressIndicator(
+                    backgroundColor: Theme.of(context).primaryColor,
                   );
-                } else if (snapshot.hasError) {
-                  return Text("Error: ${snapshot.error}");
-                }
-
-                // By default, show a loading spinner.
-                return CircularProgressIndicator(
-                  backgroundColor: Theme.of(context).primaryColor,
-                );
-              },
+                },
+              ),
             ),
-          ),
-          Column(
-            children: [
-              RaisedButton(
-                elevation: 8.0,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                    side: BorderSide(color: Theme.of(context).primaryColor)),
-                textColor: Theme.of(context).primaryColor,
-                color: Theme.of(context).accentColor,
-                padding: const EdgeInsets.all(8.0),
-                child: new Text(
-                  "Info about the disease",
+            Column(
+              children: [
+                RaisedButton(
+                  elevation: 8.0,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                      side: BorderSide(color: Theme.of(context).primaryColor)),
+                  textColor: Theme.of(context).primaryColor,
+                  color: Theme.of(context).accentColor,
+                  padding: const EdgeInsets.all(8.0),
+                  child: new Text(
+                    "Info about the disease",
+                  ),
+                  onPressed: () {
+                    print("Passing arguments");
+                    print("textDisplay = " + textDisplay);
+                    print(diseaseIndexMapping[widget.categoryIndex][textDisplay]
+                        .toString());
+                    Navigator.push(
+                        context,
+                        ScaleRoute(
+                            page: InformationScreen(
+                          selpredDis: diseaseIndexMapping[widget.categoryIndex]
+                              [textDisplay],
+                          plantName: plantName[widget.categoryIndex]["name"],
+                          diseaseName: textDisplay,
+                        )));
+                  },
                 ),
-                onPressed: () {
-                  print("Passing arguments");
-                  print("textDisplay = " + textDisplay);
-                  print(diseaseIndexMapping[widget.categoryIndex][textDisplay]
-                      .toString());
-                  Navigator.push(
-                      context,
-                      ScaleRoute(
-                          page: InformationScreen(
-                        selpredDis: diseaseIndexMapping[widget.categoryIndex]
-                            [textDisplay],
-                        plantName: plantName[widget.categoryIndex]["name"],
-                        diseaseName: textDisplay,
-                      )));
-                },
-              ),
-              RaisedButton(
-                elevation: 8.0,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                    side: BorderSide(color: Theme.of(context).primaryColor)),
-                textColor: Theme.of(context).primaryColor,
-                color: Theme.of(context).accentColor,
-                padding: const EdgeInsets.all(8.0),
-                child: new Text(
-                  "Other diseases' Info",
+                RaisedButton(
+                  elevation: 8.0,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                      side: BorderSide(color: Theme.of(context).primaryColor)),
+                  textColor: Theme.of(context).primaryColor,
+                  color: Theme.of(context).accentColor,
+                  padding: const EdgeInsets.all(8.0),
+                  child: new Text(
+                    "Other diseases' Info",
+                  ),
+                  onPressed: () {
+                    print("Navigating to General InfoPage");
+                    print(plantName[widget.categoryIndex]["name"]);
+                    Navigator.push(
+                        context,
+                        ScaleRoute(
+                            page: GeneralInformationScreen(
+                          plantName: plantName[widget.categoryIndex]["name"],
+                        )));
+                  },
                 ),
-                onPressed: () {
-                  print("Navigating to General InfoPage");
-                  print(plantName[widget.categoryIndex]["name"]);
-                  Navigator.push(
-                      context,
-                      ScaleRoute(
-                          page: GeneralInformationScreen(
-                        plantName: plantName[widget.categoryIndex]["name"],
-                      )));
-                },
-              ),
-            ],
-          ),
-        ],
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

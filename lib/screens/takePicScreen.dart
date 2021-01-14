@@ -22,7 +22,6 @@ class TakePictureScreen extends StatefulWidget {
 }
 
 class _TakePictureScreenState extends State<TakePictureScreen> {
-
   bool get isPlaying => _animationController?.isActive ?? false;
   Artboard _riveArtboard;
   RiveAnimationController _animationController;
@@ -74,7 +73,8 @@ class _TakePictureScreenState extends State<TakePictureScreen> {
 
     _controller = CameraController(
       widget.camera,
-      ResolutionPreset.medium,
+      ResolutionPreset.max,
+      enableAudio: false,
     );
 
     //new cam
