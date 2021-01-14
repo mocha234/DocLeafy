@@ -6,7 +6,6 @@ import '../static/appBars.dart';
 // import '../models/infoModel.dart';
 import './constantsInfo.dart';
 
-
 // Future<Info> fetchInfo(String plantName) async {
 //   final response = await http.get(url);
 
@@ -72,7 +71,7 @@ class _InformationScreenState extends State<InformationScreen> {
     final String theDiseaseReference = diseaseinfos["reference"];
     // Disease's Info <END>
     print(theDiseaseName);
-    print("ddddddd" + widget.plantName);
+    print("Plant Type" + widget.plantName);
     return Scaffold(
         backgroundColor: Theme.of(context).accentColor,
         appBar:
@@ -88,9 +87,11 @@ class _InformationScreenState extends State<InformationScreen> {
                     SizedBox(
                       height: 12.0,
                     ),
-                    Image.asset(
-                        "assets/images/diseasesPic/${widget.plantName.toLowerCase()}/${theDiseaseName.replaceAll(' ', '').toLowerCase()}.png",
-                        fit: BoxFit.cover),
+                    Center(
+                      child: Image.asset(
+                          "assets/images/diseasesPic/${widget.plantName.toLowerCase()}/${theDiseaseName.replaceAll(' ', '').toLowerCase()}.png",
+                          fit: BoxFit.cover),
+                    ),
                     SizedBox(
                       height: 12.0,
                     ),

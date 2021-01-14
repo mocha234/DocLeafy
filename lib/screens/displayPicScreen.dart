@@ -114,9 +114,6 @@ class _DisplayPictureScreenState extends State<DisplayPictureScreen> {
     super.initState();
     print("Temp Image Path: " + widget.imagePath);
     print("categoryIndex: " + widget.categoryIndex.toString());
-    // futurePredictions1 =
-    //     fetchPredictions(widget.imagePath, widget.categoryIndex);
-    //fetchInfo(widget.imagePath, "https://20.83.176.144:5000/predict-tomato");
   }
 
   @override

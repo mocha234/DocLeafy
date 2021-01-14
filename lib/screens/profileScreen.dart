@@ -2,6 +2,7 @@ import 'package:docleafy/screens/loginPage.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:camera/camera.dart';
+import './constantsInfo.dart';
 
 // import '../main.dart';
 
@@ -53,7 +54,37 @@ class _ProfileScreenState extends State<ProfileScreen> {
               style: TextStyle(color: Theme.of(context).primaryColor),
             ),
             SizedBox(
+              height: 25.0,
+            ),
+            Text(
+              "About",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  color: Theme.of(context).primaryColor,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16.0),
+            ),
+            SizedBox(
+              height: 7.0,
+            ),
+            Container(
+              margin: EdgeInsets.fromLTRB(24.0, 0.0, 24.0, 0.0),
+              child: Text(
+                aboutText[0],
+                textAlign: TextAlign.center,
+                style: TextStyle(color: Theme.of(context).primaryColor),
+              ),
+            ),
+            SizedBox(
               height: 15.0,
+            ),
+            Container(
+              margin: EdgeInsets.fromLTRB(24.0, 0.0, 24.0, 0.0),
+              child: Text(
+                aboutText[1],
+                textAlign: TextAlign.center,
+                style: TextStyle(color: Theme.of(context).primaryColor),
+              ),
             ),
             // RaisedButton(
             //   onPressed: () async {
@@ -73,7 +104,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
               child: RaisedButton(
                 onPressed: () async {
                   await _userSignout();
-
                   Navigator.push(
                       context,
                       ScaleRoute(

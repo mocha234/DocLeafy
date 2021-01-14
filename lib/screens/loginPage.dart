@@ -5,10 +5,14 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:camera/camera.dart';
 import 'categoriesScreen.dart';
+import './constantsInfo.dart';
 
 Future<String> loginNow({String username, String password}) async {
   print("loginNow");
-  var postUri = Uri.parse("http://20.83.176.144:5000/login");
+
+  var url = projectAPI["login"];
+  var postUri = Uri.parse(url);
+  //var postUri = Uri.parse("http://20.83.176.144:5000/login");
   var request = http.MultipartRequest("POST", postUri);
   request.fields['username'] = username;
   request.fields['password'] = password;
@@ -106,6 +110,8 @@ class _LoginPageState extends State<LoginPage> {
                     width: MediaQuery.of(context).size.width,
                     child: TextField(
                       controller: loginUsername,
+                      enableSuggestions: false,
+                      autocorrect: false,
                       style: TextStyle(
                         color: Colors.black,
                       ),
@@ -138,6 +144,9 @@ class _LoginPageState extends State<LoginPage> {
                     width: MediaQuery.of(context).size.width,
                     child: TextField(
                       controller: loginPassword,
+                      obscureText: true,
+                      enableSuggestions: false,
+                      autocorrect: false,
                       style: TextStyle(
                         color: Colors.black,
                       ),

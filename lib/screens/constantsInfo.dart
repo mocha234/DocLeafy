@@ -1,6 +1,10 @@
 // Plant and their indices
 // 0 -> Tomato
 // 1 -> Strawberry
+const Map<int, String> aboutText = {
+  0: "DocLeafy is a cross-platform mobile application Artificial Intelligence driven plant disease predictor by a snap of picture or choosing photo from local device of plant’s leaf .",
+  1: " By identifying type of disease, the app will provide information, namely potential  name, causes and solutions of the disease"
+};
 
 const Map<int, Map<String, int>> diseaseIndexMapping = {
   0: {
@@ -15,10 +19,7 @@ const Map<int, Map<String, int>> diseaseIndexMapping = {
     "Yellow Leaf Curl Virus": 8,
     "Healthy": 9
   },
-  1: {
-    "Leaf Scorch": 0,
-    "Healthy": 1
-  }
+  1: {"Leaf Scorch": 0, "Healthy": 1}
 };
 
 // const Map<int, Map<String, String>> projectAPI = {
@@ -39,8 +40,9 @@ const Map<int, Map<String, int>> diseaseIndexMapping = {
 //     "Content-Type": "application/octet-stream"
 //   }
 // };
-
-// const String jsonInfoApi = "https://jsonkeeper.com/b/UDHO";
+const Map<String, String> projectAPI = {
+  "login": "http://20.83.176.144:5000/login"
+};
 
 const Map<int, Map<String, String>> plantName = {
   0: {
@@ -244,40 +246,48 @@ const Map<String, List<Map<String, String>>> diseaseInfos = {
     {
       "name": "Healthy",
       "intro": "This Plant is healthy!",
-      "symptomandsigns": " ",
-      "cause1": "",
-      "cause2": "",
-      "cause3": "",
-      "solution1": "",
-      "solution2": "",
-      "solution3": "",
-      "reference": ""
+      "symptomandsigns": "This Plant is healthy!",
+      "cause1": "This Plant is healthy!",
+      "cause2": "This Plant is healthy!",
+      "cause3": "This Plant is healthy!",
+      "solution1": "This Plant is healthy!",
+      "solution2": "This Plant is healthy!",
+      "solution3": "This Plant is healthy!",
+      "reference": "This Plant is healthy!"
     }
   ],
   "Strawberry": [
     {
       "name": "Leaf Scorch",
-      "intro": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      "symptomandsigns": "",
-      "cause1": " ",
-      "cause2": " ",
-      "cause3": " ",
-      "solution1": " ",
-      "solution2": " ",
-      "solution3": "      ",
-      "reference": ""
+      "intro":
+          "Leaf Scorch is the most common leaf disease in matted row systems but rarely occurs in annual production systems. The pathogen can survive and cause disease at a wide range of temperatures, and has been reported to cause disease year-round on perennial crops. Replanting frequently is recommended in these systems since the disease usually is not severe the first or second year after planting. Because of this, leaf scorch is not a major problem in annual systems.",
+      "symptomandsigns":
+          "Leaf scorch symptoms are very similar to the early stages of common (Mycosphaerella) leaf spot, with irregular dark purple spots being scattered over the upper leaf surface. As the spots enlarge, they begin to look like drops of tar, and are the accumulations of black fruiting bodies (acervuli) of the fungus. The centers of the spots remain purple (in Mycosphaerella leaf spot they are white) and there is no well-defined lesion border. In heavy infections, these regions coalesce and the tissue between the lesions often takes on a purplish to bright red color that is dependent on cultivar, temperature, or other factors. The leaves eventually turn brown, dry up, and curl at the margins giving the leaf a scorched appearance. ",
+      "cause1":
+          "In annual production systems, the disease can come on transplants or tips and build up in the plug production phase in the early fall in the field. However, the pathogen does not cause damage the following spring. ",
+      "cause2":
+          "In the matted row system, the population can build up to damaging levels. Spores are produced in the spring and midsummer on lower leaf surfaces of dead leaves infected in the previous year, and are spread by wind and splashing rain. ",
+      "cause3":
+          "Disease increase is favored by leaf wetness during warm weather (68-86°F), and is likely to become more significant on older plantings of susceptible varieties. One ascospore generation (the starting sproes) and several overlapping generations of conidia (spores) are produced every year.",
+      "solution1":
+          "In matted row or perennial strawberry systems, select a planting site with good air drainage and sun exposure. Cultivars resistant to leaf scorch may be available and need to be evaluated for specific horticultural characteristics. Plant new transplants frequently, and allow adequate spacing between them to increase airflow.",
+      "solution2":
+          "Control weeds. Avoid amendment with supplemental nitrogen in spring, as this may enhance disease. Keep moisture levels down and avoid long wetness per",
+      "solution3": " ",
+      "reference":
+          "https://content.ces.ncsu.edu/leaf-scorch-of-strawberry#:~:text=Diplocarpon%20earlianum%20is%20a%20fungus,residues%20(Heidenreich%20and%20Turechek)"
     },
     {
       "name": "Healthy",
       "intro": "This Plant is healthy!",
-      "symptomandsigns": "",
-      "cause1": "",
-      "cause2": "",
-      "cause3": "",
-      "solution1": "",
-      "solution2": "",
-      "solution3": "",
-      "reference": ""
+      "symptomandsigns": "This Plant is healthy!",
+      "cause1": "This Plant is healthy!",
+      "cause2": "This Plant is healthy!",
+      "cause3": "This Plant is healthy!",
+      "solution1": "This Plant is healthy!",
+      "solution2": "This Plant is healthy!",
+      "solution3": "This Plant is healthy!",
+      "reference": "This Plant is healthy!"
     }
   ]
 };
