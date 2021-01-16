@@ -246,14 +246,14 @@ const Map<String, List<Map<String, String>>> diseaseInfos = {
     {
       "name": "Healthy",
       "intro": "This Plant is healthy!",
-      "symptomandsigns": "This Plant is healthy!",
-      "cause1": "This Plant is healthy!",
+      "symptomandsigns": "No Symptoms and Signs!",
+      "cause1": "",
       "cause2": "This Plant is healthy!",
-      "cause3": "This Plant is healthy!",
-      "solution1": "This Plant is healthy!",
+      "cause3": "",
+      "solution1": "",
       "solution2": "This Plant is healthy!",
-      "solution3": "This Plant is healthy!",
-      "reference": "This Plant is healthy!"
+      "solution3": "",
+      "reference": "https://en.wikipedia.org/wiki/Tomato"
     }
   ],
   "Strawberry": [
@@ -280,14 +280,14 @@ const Map<String, List<Map<String, String>>> diseaseInfos = {
     {
       "name": "Healthy",
       "intro": "This Plant is healthy!",
-      "symptomandsigns": "This Plant is healthy!",
-      "cause1": "This Plant is healthy!",
+      "symptomandsigns": "No Symptoms and Signs!",
+      "cause1": "",
       "cause2": "This Plant is healthy!",
-      "cause3": "This Plant is healthy!",
-      "solution1": "This Plant is healthy!",
+      "cause3": "",
+      "solution1": "",
       "solution2": "This Plant is healthy!",
-      "solution3": "This Plant is healthy!",
-      "reference": "This Plant is healthy!"
+      "solution3": "",
+      "reference": "https://en.wikipedia.org/wiki/Strawberry"
     }
   ]
 };

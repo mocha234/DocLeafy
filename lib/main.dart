@@ -19,7 +19,7 @@ Future<bool> _loggedInorNot() async {
 
 Future<void> main() async {
   // Initialize Camera as soon as app is prompted
-  
+
   WidgetsFlutterBinding.ensureInitialized();
   final cameras = await availableCameras();
   final firstCamera = cameras.first;

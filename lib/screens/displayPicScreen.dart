@@ -127,10 +127,16 @@ class _DisplayPictureScreenState extends State<DisplayPictureScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            SizedBox(
+              height: 12.0,
+            ),
             Image.file(File(widget.imagePath)),
             // Center(
             //   child: FutureBuilder<Predicted>(
             //     future: futurePredictions1,
+            SizedBox(
+              height: 12.0,
+            ),
             Center(
               child: FutureBuilder<Predicted>(
                 future: fetchInfo(widget.imagePath,
@@ -154,7 +160,7 @@ class _DisplayPictureScreenState extends State<DisplayPictureScreen> {
                               TextStyle(color: Theme.of(context).primaryColor),
                         ),
                         SizedBox(
-                          height: 6.0,
+                          height: 12.0,
                         ),
                         Text(
                           textDisplay,
@@ -173,6 +179,9 @@ class _DisplayPictureScreenState extends State<DisplayPictureScreen> {
                   );
                 },
               ),
+            ),
+            SizedBox(
+              height: 12.0,
             ),
             Column(
               children: [
