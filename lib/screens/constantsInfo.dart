@@ -41,19 +41,19 @@ const Map<int, Map<String, int>> diseaseIndexMapping = {
 //   }
 // };
 const Map<String, String> projectAPI = {
-  "login": "http://20.83.176.144:5000/login"
+  "login": "http://docleaf.eastus.cloudapp.azure.com:5000/login"
 };
 
 const Map<int, Map<String, String>> plantName = {
   0: {
     "name": "Tomato",
     "imagePath": "assets/images/catergoriesScreen/tomatoIcon.png",
-    "apiEndPoint": "http://20.83.176.144:5000/predict-tomato"
+    "apiEndPoint": "http://docleaf.eastus.cloudapp.azure.com:5000/predict-tomato"
   },
   1: {
     "name": "Strawberry",
     "imagePath": "assets/images/catergoriesScreen/strawberryIcon.png",
-    "apiEndPoint": "http://20.83.176.144:5000/predict-strawberry"
+    "apiEndPoint": "http://docleaf.eastus.cloudapp.azure.com:5000/predict-strawberry"
   }
 };
 

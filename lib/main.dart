@@ -41,7 +41,8 @@ Future<void> main() async {
           accentColor: Color(0xFFEFEFE8), //Alabaster
           fontFamily: GoogleFonts.ubuntu().fontFamily,
         ),
-        home: _loggedIn
+        home: 
+             _loggedIn
             ? AnimatedSplashScreen(
                 duration: 2500,
                 splash: Image.asset(
