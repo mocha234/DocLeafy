@@ -12,3 +12,4 @@ solutions of the disease
 
 ## Project Proposal
 
+[Click Here for the full Project Proposal](https://github.com/mocha234/DocLeafy/blob/master/Team%20ALAM_Project%20Proposal.pdf) 
