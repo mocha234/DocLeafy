@@ -1,16 +1,14 @@
 # docleafy
 
-A new Flutter project.
+DocLeafy
+is a cross platform mobile
+application(currently only available for Android
+devices) Artificial Intelligence driven plant disease
+predictor by a snap of picture or choosing photo
+from local device of plant’s leaf .
+By identifying type of disease, the app will provide
+information, namely potential name, causes and
+solutions of the disease
 
-## Getting Started
+## Project Proposal
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
